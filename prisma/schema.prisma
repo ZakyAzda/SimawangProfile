@@ -1,0 +1,85 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model Post {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  slug        String   @unique
+  title       String
+  content     String
+  category    String
+  image       String?
+  authorName  String
+  views       Int      @default(0)
+  publishedAt DateTime @default(now())
+}
+
+model GalleryItem {
+  id          String  @id @default(auto()) @map("_id") @db.ObjectId
+  title       String
+  image       String
+  description String?
+}
+
+model User {
+  id       String @id @default(auto()) @map("_id") @db.ObjectId
+  name     String
+  email    String @unique
+  password String
+  role     String @default("editor")
+}
+
+model DataKesehatan {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  jorong         String
+  jumlahStunting Int
+}
+
+model DataNagari {
+  id     String @id @default(auto()) @map("_id") @db.ObjectId
+  nama   String
+  jumlah Int
+}
+
+model DataSejarahBudaya {
+  id         String @id @default(auto()) @map("_id") @db.ObjectId
+  jorong     String
+  namaTempat String
+  jumlah     Int
+}
+
+model DataPotensiAlam {
+  id          String @id @default(auto()) @map("_id") @db.ObjectId
+  jorong      String
+  namaTempat  String
+  namaPotensi String
+}
+
+model DataUmkm {
+  id          String @id @default(auto()) @map("_id") @db.ObjectId
+  productUmkm String
+  jumlah      Int
+}
+
+model DataSanitasi {
+  id     String @id @default(auto()) @map("_id") @db.ObjectId
+  jorong String
+  sumber String
+  jumlah Int
+}
+
+model Pengaduan {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  nama      String
+  noWa      String?
+  kategori  String
+  laporan   String
+  status    String   @default("Pending")
+  createdAt DateTime @default(now())
+}
+

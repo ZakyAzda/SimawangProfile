@@ -7,7 +7,7 @@ const LOCATION_STATS = [
 
 export function LocationSection() {
   return (
-    <section style={{ width: "100%", padding: "80px 0", background: "#ffffff" }}>
+    <section style={{ width: "100%", padding: "80px 0", background: "transparent" }}>
       <div className="ng-wrap">
         {/* Header */}
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: "36px", flexWrap: "wrap", gap: "12px" }}>

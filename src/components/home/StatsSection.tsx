@@ -82,7 +82,7 @@ const glassCSS = `
 
 export function StatsSection() {
   return (
-    <section style={{ width: "100%", background: "#ffffff", padding: "80px 0", borderTop: "1px solid rgba(0,0,0,0.06)", borderBottom: "1px solid rgba(0,0,0,0.06)" }}>
+    <section style={{ width: "100%", background: "transparent", padding: "80px 0" }}>
       <style>{glassCSS}</style>
       <div className="ng-wrap">
         {/* Header */}

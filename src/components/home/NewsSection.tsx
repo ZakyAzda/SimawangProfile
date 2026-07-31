@@ -4,6 +4,12 @@ import Link from "next/link";
 const fmtDate = (d: string) =>
   new Date(d).toLocaleDateString("id-ID", { day: "numeric", month: "long", year: "numeric" });
 
+const getSafeImage = (img?: string | null) => {
+  if (!img) return "/berita-1.png";
+  if (img.startsWith("/") || img.startsWith("http")) return img;
+  return "/berita-1.png"; // Fallback for invalid strings like "string"
+};
+
 export function NewsSection({ posts }: { posts: any[] }) {
   const featured = posts?.[0];
   const rest = posts?.slice(1, 3) ?? [];
@@ -39,7 +45,7 @@ export function NewsSection({ posts }: { posts: any[] }) {
             <Link href={`/berita/${featured.slug}`} className="ng-news" style={{ textDecoration: "none", display: "block" }}>
               <div style={{ position: "relative", width: "100%", aspectRatio: "16/9", overflow: "hidden", background: "#f1f3f5" }}>
                 <Image
-                  src={featured.image || "/berita-1.png"}
+                  src={getSafeImage(featured.image)}
                   alt={featured.title}
                   fill
                   sizes="(max-width:768px) 100vw, 640px"
@@ -106,7 +112,7 @@ export function NewsSection({ posts }: { posts: any[] }) {
                     }}
                   >
                     <div style={{ position: "relative", width: "80px", height: "64px", flexShrink: 0, overflow: "hidden", background: "#f1f3f5" }}>
-                      <Image src={n.image || "/berita-1.png"} alt={n.title} fill sizes="80px" style={{ objectFit: "cover" }} className="ng-img" />
+                      <Image src={getSafeImage(n.image)} alt={n.title} fill sizes="80px" style={{ objectFit: "cover" }} className="ng-img" />
                     </div>
                     <div>
                       <p style={{ fontSize: "11px", color: "var(--gray-500)", marginBottom: "6px" }}>{fmtDate(n.publishedAt)}</p>

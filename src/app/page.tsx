@@ -7,6 +7,7 @@ import { ReportSection } from "@/components/home/ReportSection";
 import { GallerySection } from "@/components/home/GallerySection";
 import prisma from "@/lib/db";
 import {LocationSection} from "@/components/home/LocationSection";
+import { StatsSection } from "@/components/home/StatsSection";
 
 export const dynamic = "force-dynamic";
 
@@ -181,7 +182,8 @@ export default async function HomePage() {
       <div className="ng">
         <NavBar />
         <main style={{ width: "100%", display: "flex", flexDirection: "column" }}>
-          <HeroSection />
+          <HeroSection/>
+          <StatsSection/>
           <NewsSection posts={posts} />
           <GallerySection galleryItems={galleryItems} />
           <ReportSection />

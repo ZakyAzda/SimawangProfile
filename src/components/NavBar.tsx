@@ -48,16 +48,22 @@ export function NavBar() {
             if (link.dropdown) {
               return (
                 <div key={link.href} className="dropdown-wrapper">
-                  <span className={`nav-link ${pathname.startsWith(link.href) ? "active" : ""}`} style={{ cursor: "pointer" }}>
+                  <Link href={link.href} className={`nav-link ${pathname.startsWith(link.href) ? "active" : ""}`} style={{ cursor: "pointer" }}>
                     {link.label}
                     <span className="material-symbols-outlined" style={{ fontSize: "14px", marginLeft: "4px", verticalAlign: "middle" }}>expand_more</span>
-                  </span>
+                  </Link>
                   <div className="dropdown-menu">
-                    {JORONG_LIST.map((jorong) => (
-                      <Link key={jorong} href={`/jorong?nama=${encodeURIComponent(jorong)}`} className="dropdown-item">
-                        {jorong}
-                      </Link>
-                    ))}
+                    <Link href={link.href} className="dropdown-item" style={{ fontWeight: 700, borderBottom: "1px solid rgba(0,0,0,0.06)", borderRadius: "8px 8px 0 0", marginBottom: "4px", paddingBottom: "12px", color: "var(--accent, #000)" }}>
+                      Lihat Semua Jorong
+                    </Link>
+                    {JORONG_LIST.map((jorong) => {
+                      const slug = jorong.toLowerCase().replace(/\s+/g, "-");
+                      return (
+                        <Link key={jorong} href={`/jorong/${slug}`} className="dropdown-item">
+                          {jorong}
+                        </Link>
+                      );
+                    })}
                   </div>
                 </div>
               );

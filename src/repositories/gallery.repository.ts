@@ -14,6 +14,10 @@ export const galleryRepository = {
     return db.galleryItem.create({ data });
   },
 
+  createMany(data: CreateGalleryItemInput[]) {
+    return db.galleryItem.createMany({ data });
+  },
+
   update(id: string, data: UpdateGalleryItemInput) {
     return db.galleryItem.update({ where: { id }, data });
   },

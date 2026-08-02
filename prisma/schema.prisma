@@ -24,6 +24,7 @@ model GalleryItem {
   title       String
   image       String
   description String?
+  category    String?
 }
 
 model User {
@@ -50,27 +51,27 @@ model DataSejarahBudaya {
   id         String @id @default(auto()) @map("_id") @db.ObjectId
   jorong     String
   namaTempat String
-  jumlah     Int
 }
 
 model DataPotensiAlam {
-  id          String @id @default(auto()) @map("_id") @db.ObjectId
-  jorong      String
-  namaTempat  String
-  namaPotensi String
+  id       String @id @default(auto()) @map("_id") @db.ObjectId
+  kategori String
+  jumlah   Int
 }
 
 model DataUmkm {
   id          String @id @default(auto()) @map("_id") @db.ObjectId
   productUmkm String
-  jumlah      Int
+  jumlah      Float
 }
 
 model DataSanitasi {
-  id     String @id @default(auto()) @map("_id") @db.ObjectId
-  jorong String
-  sumber String
-  jumlah Int
+  id          String @id @default(auto()) @map("_id") @db.ObjectId
+  jorong      String
+  sampahMS    Float  // % Tempat Sampah MS
+  spalMS      Float  // % Rumah Punya SPAL MS
+  jambanSehat Float  // % Jamban Sehat
+  aksesAir    Float  // % Periode ODG Akses Berkelanjutan & TDA Air Minum Berkelanjutan
 }
 
 model Pengaduan {

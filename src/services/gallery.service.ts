@@ -16,6 +16,10 @@ export const galleryService = {
     return galleryRepository.create(data);
   },
 
+  createMany(data: CreateGalleryItemInput[]) {
+    return galleryRepository.createMany(data);
+  },
+
   async update(id: string, data: UpdateGalleryItemInput) {
     await galleryService.getById(id);
     return galleryRepository.update(id, data);

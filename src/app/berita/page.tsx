@@ -129,7 +129,7 @@ export default async function BeritaPage({
         <main className="ng-wrap" style={{ paddingTop: "120px", paddingBottom: "80px" }}>
 
           {/* Header & Search Section */}
-          <div className="w-full border-b border-[var(--line)] pb-16 mb-16">
+          <div className="w-full border-b border-[var(--line)] pb-16 mb-16" style={{ paddingBottom: "48px", marginBottom: "56px" }}>
             {/* Page Header */}
             <div className="w-full flex flex-col items-center justify-center text-center mb-10 px-4">
               <h1 className="serif text-4xl lg:text-5xl font-bold text-[var(--gray-900)] mb-4">Berita & Publikasi Nagari</h1>
@@ -137,7 +137,7 @@ export default async function BeritaPage({
             </div>
             
             {/* Hero Search Bar */}
-            <div className="w-full flex justify-center px-4">
+            <div className="w-full flex justify-center px-4" style={{ paddingBottom: "8px" }}>
               <form action="/berita" method="GET" className="relative w-full max-w-2xl">
                 <input 
                   type="text" 

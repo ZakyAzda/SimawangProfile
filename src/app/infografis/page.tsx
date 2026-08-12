@@ -105,12 +105,11 @@ const CSS = `
 `;
 
 export default async function InfografisPage() {
-  // 1. Fetch data from Prisma
   const kesehatanAgg = await prisma.dataKesehatan.aggregate({ _sum: { jumlahStunting: true } });
   const nagariAgg = await prisma.dataNagari.aggregate({ _sum: { jumlah: true } });
-  const sejarahAgg = await prisma.dataSejarahBudaya.aggregate({ _sum: { jumlah: true } });
+  const sejarahCount = await prisma.dataSejarahBudaya.count();
   const potensiCount = await prisma.dataPotensiAlam.count();
-  const sanitasiAgg = await prisma.dataSanitasi.aggregate({ _sum: { jumlah: true } });
+  const sanitasiCount = await prisma.dataSanitasi.count();
   const umkmAgg = await prisma.dataUmkm.aggregate({ _sum: { jumlah: true } });
 
   // 2. Prepare the 6 stats with their dynamic counts
@@ -133,7 +132,7 @@ export default async function InfografisPage() {
       icon: "history_edu",
       label: "Data Sejarah",
       desc: "Situs & Budaya",
-      count: sejarahAgg._sum.jumlah ?? 0,
+      count: sejarahCount,
       href: "/infografis/sejarah",
     },
     {
@@ -146,8 +145,8 @@ export default async function InfografisPage() {
     {
       icon: "cleaning_services",
       label: "Data Sanitasi",
-      desc: "Sarana Air Bersih",
-      count: sanitasiAgg._sum.jumlah ?? 0,
+      desc: "Data Jorong",
+      count: sanitasiCount,
       href: "/infografis/sanitasi",
     },
     {

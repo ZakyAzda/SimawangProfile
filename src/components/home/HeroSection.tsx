@@ -1,23 +1,17 @@
-import Image from "next/image";
 import Link from "next/link";
+import { HeroSlideshow } from "./HeroSlideshow";
 
 export function HeroSection() {
   return (
     <section
-      style={{ position: "relative", width: "100%", minHeight: "100vh", display: "flex", flexDirection: "column", justifyContent: "center" }}
+      style={{ position: "relative", width: "100%", minHeight: "100vh", display: "flex", flexDirection: "column", justifyContent: "center", overflow: "hidden" }}
     >
-      <Image
-        src="/hero-bg.png"
-        alt="Pemandangan Nagari Simawang"
-        fill
-        priority
-        style={{ objectFit: "cover", objectPosition: "center 40%" }}
-        sizes="100vw"
-      />
-      {/* Clean dark overlay — no tinted color */}
-      <div style={{ position: "absolute", inset: 0, background: "linear-gradient(0deg, rgba(10,10,10,0.85) 0%, rgba(10,10,10,0.4) 50%, rgba(10,10,10,0.15) 100%)" }} />
+      {/* ── Slideshow background ── */}
+      <HeroSlideshow />
+      {/* Clean dark overlay — sits above slides (z:2) */}
+      <div style={{ position: "absolute", inset: 0, zIndex: 2, background: "linear-gradient(0deg, rgba(10,10,10,0.85) 0%, rgba(10,10,10,0.4) 50%, rgba(10,10,10,0.15) 100%)" }} />
 
-      <div className="ng-wrap" style={{ position: "relative", width: "100%", padding: "0 40px", zIndex: 1, marginTop: "60px" }}>
+      <div className="ng-wrap" style={{ position: "relative", width: "100%", padding: "0 40px", zIndex: 3, marginTop: "60px" }}>
         {/* Location pill */}
         <div
           style={{
@@ -87,7 +81,7 @@ export function HeroSection() {
       </div>
 
       {/* scroll hint */}
-      <div style={{ position: "absolute", right: "48px", bottom: "40px", display: "flex", flexDirection: "column", alignItems: "center", gap: "6px" }}>
+      <div style={{ position: "absolute", right: "48px", bottom: "40px", zIndex: 3, display: "flex", flexDirection: "column", alignItems: "center", gap: "6px" }}>
         <span className="material-symbols-outlined ng-bounce" style={{ fontSize: "22px", color: "rgba(255,255,255,0.45)" }}>keyboard_arrow_down</span>
       </div>
     </section>

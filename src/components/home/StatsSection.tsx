@@ -82,7 +82,7 @@ const glassCSS = `
 
 export function StatsSection() {
   return (
-    <section style={{ width: "100%", background: "transparent", padding: "80px 0" }}>
+    <section id="infografis" style={{ width: "100%", background: "transparent", padding: "80px 0" }}>
       <style>{glassCSS}</style>
       <div className="ng-wrap">
         {/* Header */}
@@ -92,63 +92,45 @@ export function StatsSection() {
             <h2 className="serif" style={{ fontSize: "clamp(26px, 3vw, 36px)", fontWeight: 700, color: "var(--gray-900)", letterSpacing: "-0.02em" }}>
               Infografis &amp; Statistik
             </h2>
+            <p style={{ color: "var(--gray-500)", marginTop: "8px", maxWidth: "600px", lineHeight: 1.6 }}>
+              Transparansi data statistik Nagari Simawang, bersumber langsung dari pendataan yang dilakukan oleh aparatur nagari.
+            </p>
           </div>
         </div>
 
-        {/* Glass Cards Grid */}
         <div
           className="ng-cols-stats"
-          style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "14px" }}
+          style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "20px" }}
         >
           {STATS.map((s) => (
             <Link key={s.label} href={s.href} className="ng-glass-card">
-              {/* Icon */}
               <div className="ng-glass-icon">
                 <span
                   className="material-symbols-outlined"
-                  style={{ fontSize: "20px", color: "var(--gray-700, #495057)" }}
+                  style={{ fontSize: "24px", color: "var(--gray-700, #495057)" }}
                 >
                   {s.icon}
                 </span>
               </div>
-
-              {/* Label (eyebrow) */}
-              <p
-                style={{
-                  fontSize: "10px",
-                  fontWeight: 700,
-                  letterSpacing: "0.12em",
-                  textTransform: "uppercase",
-                  color: "var(--gray-500)",
-                  marginBottom: "8px",
-                }}
-              >
+              
+              <p style={{ fontSize: "11px", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--gray-500)", marginBottom: "8px" }}>
                 Open Data
               </p>
 
-              {/* Title */}
               <h3
                 className="serif"
-                style={{
-                  fontSize: "16px",
-                  fontWeight: 700,
-                  color: "var(--gray-900)",
-                  marginBottom: "6px",
-                  lineHeight: 1.2,
-                }}
+                style={{ fontSize: "18px", fontWeight: 700, color: "var(--gray-900)", marginBottom: "8px", lineHeight: 1.2 }}
               >
                 {s.label}
               </h3>
-
-              {/* Description */}
-              <p style={{ fontSize: "12px", color: "var(--gray-500)", lineHeight: 1.6, flexGrow: 1 }}>
+              
+              <p style={{ fontSize: "13px", color: "var(--gray-500)", lineHeight: 1.6, flexGrow: 1 }}>
                 {s.desc}
               </p>
-
-              {/* Arrow */}
+              
               <div className="ng-glass-arrow">
-                Lihat Data
-                <span className="material-symbols-outlined" style={{ fontSize: "14px" }}>
+                Lihat Data Lengkap
+                <span className="material-symbols-outlined" style={{ fontSize: "16px" }}>
                   arrow_forward
                 </span>
               </div>

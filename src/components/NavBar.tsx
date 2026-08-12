@@ -13,7 +13,7 @@ const NAV_LINKS = [
   { href: "/",           label: "Home"       },
   { href: "/profil",     label: "Profil"     },
   { href: "/jorong",     label: "Jorong",    dropdown: true },
-  { href: "/infografis", label: "Infografis" },
+
   { href: "/berita",     label: "Berita"     },
   { href: "/galeri",     label: "Galeri"     },
 ];

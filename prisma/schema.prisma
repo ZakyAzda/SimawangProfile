@@ -61,6 +61,7 @@ model DataPotensiAlam {
 
 model DataUmkm {
   id          String @id @default(auto()) @map("_id") @db.ObjectId
+  jorong      String @default("-")
   productUmkm String
   jumlah      Float
 }

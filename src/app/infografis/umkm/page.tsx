@@ -16,10 +16,19 @@ export const metadata: Metadata = {
 const inter = Inter({ subsets: ["latin"], variable: "--font-body" });
 const merriweather = Merriweather({ subsets: ["latin"], weight: ["300", "400", "700"], variable: "--font-display" });
 
-export default async function UMKMPage() {
   const umkm = await prisma.dataUmkm.findMany({
-    orderBy: { jumlah: 'desc' }
+    orderBy: { jorong: 'asc' }
   });
+
+  const aggregatedByProduct = umkm.reduce((acc, curr) => {
+    const existing = acc.find(item => item.productUmkm === curr.productUmkm);
+    if (existing) {
+      existing.jumlah += curr.jumlah;
+    } else {
+      acc.push({ ...curr });
+    }
+    return acc;
+  }, [] as typeof umkm).sort((a, b) => b.jumlah - a.jumlah);
 
   return (
     <div className={`${inter.variable} ${merriweather.variable}`}>
@@ -52,7 +61,7 @@ export default async function UMKMPage() {
                 <h3 className="serif" style={{ fontSize: "24px", fontWeight: 700, color: "var(--gray-900)" }}>Sebaran Jenis Usaha</h3>
                 <p style={{ fontSize: "14px", color: "var(--gray-500)", marginTop: "8px" }}>Proporsi jumlah masing-masing bidang UMKM</p>
               </div>
-              <PieChart data={umkm.map(u => ({ label: u.productUmkm, value: u.jumlah }))} />
+              <PieChart data={aggregatedByProduct.map(u => ({ label: u.productUmkm, value: u.jumlah }))} />
             </div>
 
             {/* Bar Charts Section */}
@@ -62,9 +71,9 @@ export default async function UMKMPage() {
                 <h3 className="serif" style={{ fontSize: "24px", fontWeight: 700, color: "var(--gray-900)" }}>Distribusi Jenis Usaha</h3>
               </div>
               
-              {umkm.length > 0 ? (
+              {aggregatedByProduct.length > 0 ? (
                 <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
-                  {umkm.map((u, i) => (
+                  {aggregatedByProduct.map((u, i) => (
                     <div key={u.id} style={{ position: "relative" }}>
                       <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "8px" }}>
                         <span style={{ fontSize: "15px", fontWeight: 600, color: "var(--gray-800)" }}>
@@ -77,7 +86,7 @@ export default async function UMKMPage() {
                       <div style={{ width: "100%", height: "12px", background: "var(--gray-100)", borderRadius: "100px", overflow: "hidden" }}>
                         <div 
                           style={{ 
-                            width: `${Math.min((u.jumlah / Math.max(1, ...umkm.map(x => x.jumlah))) * 100, 100)}%`, 
+                            width: `${Math.min((u.jumlah / Math.max(1, ...aggregatedByProduct.map(x => x.jumlah))) * 100, 100)}%`, 
                             height: "100%", 
                             background: "linear-gradient(90deg, var(--gray-700), var(--gray-900))", 
                             borderRadius: "100px",
@@ -94,6 +103,38 @@ export default async function UMKMPage() {
                   <p style={{ fontSize: "15px", color: "var(--gray-500)", fontWeight: 500 }}>Belum ada data UMKM yang tercatat.</p>
                 </div>
               )}
+            </div>
+
+            {/* Table Detail per Jorong */}
+            <div style={{ background: "#fff", borderRadius: "20px", overflow: "hidden", border: "1px solid rgba(0,0,0,0.06)", boxShadow: "0 4px 24px rgba(0,0,0,0.02)" }}>
+              <div style={{ padding: "24px 32px", borderBottom: "1px solid rgba(0,0,0,0.06)", background: "#f8f9fa" }}>
+                <h3 style={{ fontSize: "18px", fontWeight: 700, color: "var(--gray-900)" }}>Rincian UMKM per Jorong</h3>
+              </div>
+              <div style={{ overflowX: "auto" }}>
+                <table style={{ width: "100%", borderCollapse: "collapse", textAlign: "left", fontSize: "14px" }}>
+                  <thead>
+                    <tr style={{ background: "#fff", color: "var(--gray-500)", borderBottom: "2px solid rgba(0,0,0,0.06)" }}>
+                      <th style={{ padding: "16px 32px", fontWeight: 600 }}>Jorong</th>
+                      <th style={{ padding: "16px 32px", fontWeight: 600 }}>Produk UMKM</th>
+                      <th style={{ padding: "16px 32px", fontWeight: 600 }}>Jumlah Unit</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {umkm.map((k, i) => (
+                      <tr key={k.id} style={{ borderBottom: "1px solid rgba(0,0,0,0.04)", background: i % 2 === 0 ? "#fff" : "#fbfbfb" }}>
+                        <td style={{ padding: "16px 32px", fontWeight: 600, color: "var(--gray-800)" }}>{k.jorong}</td>
+                        <td style={{ padding: "16px 32px", color: "var(--gray-900)" }}>{k.productUmkm}</td>
+                        <td style={{ padding: "16px 32px", color: "var(--gray-900)", fontWeight: 700 }}>{k.jumlah}</td>
+                      </tr>
+                    ))}
+                    {umkm.length === 0 && (
+                      <tr>
+                        <td colSpan={3} style={{ padding: "32px", textAlign: "center", color: "var(--gray-500)" }}>Belum ada data</td>
+                      </tr>
+                    )}
+                  </tbody>
+                </table>
+              </div>
             </div>
 
           </div>

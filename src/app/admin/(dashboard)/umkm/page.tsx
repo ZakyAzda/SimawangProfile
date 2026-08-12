@@ -6,6 +6,7 @@ import { Plus, X, Pencil, Trash2, Loader2 } from "lucide-react";
 
 type DataUmkm = {
   id: string;
+  jorong: string;
   productUmkm: string;
   jumlah: number;
 };
@@ -22,11 +23,11 @@ const CSS = `
   .filament-table th { background: #f9fafb; padding: 12px 24px; font-weight: 600; color: #374151; border-bottom: 1px solid #e5e7eb; text-transform: uppercase; font-size: 12px; letter-spacing: 0.05em; }
   .filament-table td { padding: 16px 24px; border-bottom: 1px solid #f3f4f6; color: #4b5563; vertical-align: middle; }
   .filament-table tr:last-child td { border-bottom: none; }
-  .filament-table tr:hover { background: #f9fafb; }
   .table-actions { display: flex; gap: 8px; justify-content: flex-end; }
   .action-icon-btn { background: transparent; border: none; color: #6b7280; cursor: pointer; padding: 6px; border-radius: 6px; transition: all 0.2s; }
   .action-icon-btn:hover { background: #f3f4f6; color: #111827; }
-  .badge-count { background: #e0e7ff; color: #4338ca; padding: 4px 10px; border-radius: 9999px; font-size: 12px; font-weight: 600; display: inline-block; }
+  .badge-count { background: #fee2e2; color: #991b1b; padding: 4px 10px; border-radius: 9999px; font-size: 12px; font-weight: 600; display: inline-block; }
+  .badge-percent { background: #e0e7ff; color: #4338ca; padding: 4px 10px; border-radius: 9999px; font-size: 12px; font-weight: 600; display: inline-block; }
   .action-icon-btn.edit:hover { color: #3b82f6; background: #eff6ff; }
   .action-icon-btn.delete:hover { color: #ef4444; background: #fef2f2; }
   .modal-overlay { position: fixed; inset: 0; background: rgba(11, 31, 24, 0.4); backdrop-filter: blur(8px); z-index: 100; display: flex; align-items: center; justify-content: center; padding: 24px; }
@@ -52,7 +53,11 @@ export default function AdminUMKMPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
   const [editingId, setEditingId] = useState<string | null>(null);
-  const [formData, setFormData] = useState({ productUmkm: "", jumlah: 0 });
+  const [formData, setFormData] = useState({ jorong: "", productUmkm: "", jumlah: 0 });
+
+  const total = useMemo(() => {
+    return items.reduce((acc, item) => acc + item.jumlah, 0);
+  }, [items]);
 
   const fetchData = async () => {
     try {
@@ -69,13 +74,13 @@ export default function AdminUMKMPage() {
   useEffect(() => { fetchData(); }, []);
 
   const openCreateModal = () => {
-    setFormData({ productUmkm: "", jumlah: 0 });
+    setFormData({ jorong: "", productUmkm: "", jumlah: 0 });
     setEditingId(null);
     setIsModalOpen(true);
   };
 
   const openEditModal = (item: DataUmkm) => {
-    setFormData({ productUmkm: item.productUmkm, jumlah: item.jumlah });
+    setFormData({ jorong: item.jorong, productUmkm: item.productUmkm, jumlah: item.jumlah });
     setEditingId(item.id);
     setIsModalOpen(true);
   };
@@ -90,6 +95,7 @@ export default function AdminUMKMPage() {
         method,
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
+          jorong: formData.jorong,
           productUmkm: formData.productUmkm,
           jumlah: Number(formData.jumlah)
         })
@@ -141,8 +147,10 @@ export default function AdminUMKMPage() {
           <table className="filament-table">
             <thead>
               <tr>
+                <th>Jorong</th>
                 <th>Produk UMKM</th>
                 <th>Jumlah Unit</th>
+                <th>Persentase</th>
                 <th style={{ textAlign: "right" }}>Aksi</th>
               </tr>
             </thead>
@@ -157,9 +165,13 @@ export default function AdminUMKMPage() {
                 items.map(item => {
                   return (
                     <tr key={item.id}>
-                      <td style={{ fontWeight: 600 }}>{item.productUmkm}</td>
+                      <td style={{ fontWeight: 600 }}>{item.jorong}</td>
+                      <td>{item.productUmkm}</td>
                       <td>
                         <span className="badge-count">{item.jumlah} Unit</span>
+                      </td>
+                      <td>
+                        <span className="badge-percent">{total > 0 ? ((item.jumlah / total) * 100).toFixed(1) : 0}%</span>
                       </td>
                       <td>
                         <div className="table-actions">
@@ -187,6 +199,13 @@ export default function AdminUMKMPage() {
               </div>
               <form onSubmit={handleSubmit}>
                 <div className="modal-body">
+                  <div className="form-group">
+                    <label className="form-label">Nama Jorong</label>
+                    <input 
+                      type="text" className="form-input" placeholder="Misal: Simawang"
+                      value={formData.jorong} onChange={e => setFormData({...formData, jorong: e.target.value})} required 
+                    />
+                  </div>
                   <div className="form-group">
                     <label className="form-label">Nama Produk UMKM</label>
                     <input 

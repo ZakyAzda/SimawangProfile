@@ -58,6 +58,7 @@ export const UpdateDataPotensiAlamSchema = CreateDataPotensiAlamSchema.partial()
 
 // ─── DataUmkm ────────────────────────────────────────────────────────────────
 export const CreateDataUmkmSchema = z.object({
+  jorong: z.string().min(1, "Jorong wajib diisi"),
   productUmkm: z.string().min(1, "Nama produk wajib diisi"),
   jumlah: z.number().min(0, "Jumlah tidak boleh negatif"),
 });

@@ -2,7 +2,7 @@ import { NavBar } from "@/components/NavBar";
 import { Footer } from "@/components/Footer";
 import { JorongCard } from "@/components/jorong/JorongCard";
 import { dataJorong } from "@/data/jorong";
-import { inter, merriweather, NG_CSS } from "@/lib/ng-theme";
+import { inter, merriweather } from "@/lib/ng-theme";
 
 export const metadata = {
   title: "Jorong — Nagari Simawang",
@@ -13,7 +13,7 @@ export const metadata = {
 export default function JorongIndexPage() {
   return (
     <div className={`${inter.variable} ${merriweather.variable}`}>
-      <style>{NG_CSS}</style>
+
       <div className="ng">
         <NavBar />
         <main style={{ width: "100%", display: "flex", flexDirection: "column" }}>

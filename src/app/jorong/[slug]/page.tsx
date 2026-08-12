@@ -8,7 +8,7 @@ import { PotensiSection } from "@/components/jorong/PotensiSection";
 import { AktivitasSection } from "@/components/jorong/AktivitasSection";
 import { JorongNavSection } from "@/components/jorong/JorongNavSection";
 import { getJorongBySlug, getAllJorongSlugs } from "@/data/jorong";
-import { inter, merriweather, NG_CSS } from "@/lib/ng-theme";
+import { inter, merriweather } from "@/lib/ng-theme";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -40,7 +40,6 @@ export default async function JorongDetailPage({ params }: Props) {
 
   return (
     <div className={`${inter.variable} ${merriweather.variable}`}>
-      <style>{NG_CSS}</style>
       <div className="ng">
         <NavBar />
         <main style={{ width: "100%", display: "flex", flexDirection: "column" }}>

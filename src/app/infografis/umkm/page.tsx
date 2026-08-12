@@ -48,9 +48,9 @@ export default async function UMKMPage() {
 
             {/* Pie Chart */}
             <div style={{ background: "#fff", padding: "40px", borderRadius: "24px", border: "1px solid rgba(0,0,0,0.06)", boxShadow: "0 4px 40px rgba(0,0,0,0.03)", marginBottom: "48px" }}>
-              <div style={{ textAlign: "center", marginBottom: "40px" }}>
-                <h3 className="serif" style={{ fontSize: "24px", fontWeight: 700, color: "var(--gray-900)" }}>Persentase Jenis Usaha</h3>
-                <p style={{ fontSize: "14px", color: "var(--gray-500)", marginTop: "8px" }}>Proporsi masing-masing bidang UMKM</p>
+              <div style={{ textAlign: "center", margin: "40px 0" }}>
+                <h3 className="serif" style={{ fontSize: "24px", fontWeight: 700, color: "var(--gray-900)" }}>Sebaran Jenis Usaha</h3>
+                <p style={{ fontSize: "14px", color: "var(--gray-500)", marginTop: "8px" }}>Proporsi jumlah masing-masing bidang UMKM</p>
               </div>
               <PieChart data={umkm.map(u => ({ label: u.productUmkm, value: u.jumlah }))} />
             </div>
@@ -71,13 +71,13 @@ export default async function UMKMPage() {
                           {i + 1}. {u.productUmkm}
                         </span>
                         <span style={{ fontSize: "14px", fontWeight: 800, color: "var(--accent)" }}>
-                          {u.jumlah}%
+                          {u.jumlah} Unit
                         </span>
                       </div>
                       <div style={{ width: "100%", height: "12px", background: "var(--gray-100)", borderRadius: "100px", overflow: "hidden" }}>
                         <div 
                           style={{ 
-                            width: `${u.jumlah}%`, 
+                            width: `${Math.min((u.jumlah / Math.max(1, ...umkm.map(x => x.jumlah))) * 100, 100)}%`, 
                             height: "100%", 
                             background: "linear-gradient(90deg, var(--gray-700), var(--gray-900))", 
                             borderRadius: "100px",

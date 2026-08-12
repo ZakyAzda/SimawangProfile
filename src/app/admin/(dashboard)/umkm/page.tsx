@@ -23,10 +23,10 @@ const CSS = `
   .filament-table td { padding: 16px 24px; border-bottom: 1px solid #f3f4f6; color: #4b5563; vertical-align: middle; }
   .filament-table tr:last-child td { border-bottom: none; }
   .filament-table tr:hover { background: #f9fafb; }
-  .badge-percent { background: #e0e7ff; color: #4338ca; padding: 4px 10px; border-radius: 9999px; font-size: 12px; font-weight: 600; display: inline-block; }
   .table-actions { display: flex; gap: 8px; justify-content: flex-end; }
   .action-icon-btn { background: transparent; border: none; color: #6b7280; cursor: pointer; padding: 6px; border-radius: 6px; transition: all 0.2s; }
   .action-icon-btn:hover { background: #f3f4f6; color: #111827; }
+  .badge-count { background: #e0e7ff; color: #4338ca; padding: 4px 10px; border-radius: 9999px; font-size: 12px; font-weight: 600; display: inline-block; }
   .action-icon-btn.edit:hover { color: #3b82f6; background: #eff6ff; }
   .action-icon-btn.delete:hover { color: #ef4444; background: #fef2f2; }
   .modal-overlay { position: fixed; inset: 0; background: rgba(11, 31, 24, 0.4); backdrop-filter: blur(8px); z-index: 100; display: flex; align-items: center; justify-content: center; padding: 24px; }
@@ -142,7 +142,7 @@ export default function AdminUMKMPage() {
             <thead>
               <tr>
                 <th>Produk UMKM</th>
-                <th>Persentase</th>
+                <th>Jumlah Unit</th>
                 <th style={{ textAlign: "right" }}>Aksi</th>
               </tr>
             </thead>
@@ -159,7 +159,7 @@ export default function AdminUMKMPage() {
                     <tr key={item.id}>
                       <td style={{ fontWeight: 600 }}>{item.productUmkm}</td>
                       <td>
-                        <span className="badge-percent">{item.jumlah}%</span>
+                        <span className="badge-count">{item.jumlah} Unit</span>
                       </td>
                       <td>
                         <div className="table-actions">
@@ -195,7 +195,7 @@ export default function AdminUMKMPage() {
                     />
                   </div>
                   <div className="form-group" style={{ marginBottom: 0 }}>
-                    <label className="form-label">Persentase (%)</label>
+                    <label className="form-label">Jumlah (Unit)</label>
                     <input 
                       type="number" className="form-input" min="0" placeholder="0"
                       value={formData.jumlah} onChange={e => setFormData({...formData, jumlah: parseInt(e.target.value) || 0})} required 

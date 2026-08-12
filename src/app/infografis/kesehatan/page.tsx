@@ -5,6 +5,7 @@ import { Footer } from "@/components/Footer";
 import prisma from "@/lib/db";
 import Link from "next/link";
 import { PieChart } from "@/components/PieChart";
+import { StuntingMapGallery } from "@/components/StuntingMapGallery";
 
 export const dynamic = "force-dynamic";
 
@@ -65,6 +66,9 @@ export default async function KesehatanPage() {
                 </p>
               </div>
             </div>
+
+            {/* Map Gallery Section */}
+            <StuntingMapGallery />
 
             {/* Pie Chart */}
             <div style={{ background: "#fff", padding: "40px", borderRadius: "24px", border: "1px solid rgba(0,0,0,0.06)", boxShadow: "0 4px 40px rgba(0,0,0,0.03)", marginBottom: "48px" }}>

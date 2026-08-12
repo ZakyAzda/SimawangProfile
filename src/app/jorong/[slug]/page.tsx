@@ -5,10 +5,10 @@ import { JorongHero } from "@/components/jorong/JorongHero";
 import { ProfilJorongSection } from "@/components/jorong/ProfilJorongSection";
 import { KepalaJorongSection } from "@/components/jorong/KepalaJorongSection";
 import { PotensiSection } from "@/components/jorong/PotensiSection";
-import { AktivitasSection } from "@/components/jorong/AktivitasSection";
 import { JorongNavSection } from "@/components/jorong/JorongNavSection";
 import { getJorongBySlug, getAllJorongSlugs } from "@/data/jorong";
 import { inter, merriweather } from "@/lib/ng-theme";
+import prisma from "@/lib/db";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -38,6 +38,16 @@ export default async function JorongDetailPage({ params }: Props) {
 
   if (!jorong) notFound();
 
+  const jorongNamePlain = jorong.nama.replace(/Jorong /i, "").trim();
+  const umkmData = await prisma.dataUmkm.findMany({
+    where: {
+      jorong: {
+        contains: jorongNamePlain,
+        mode: "insensitive"
+      }
+    }
+  });
+
   return (
     <div className={`${inter.variable} ${merriweather.variable}`}>
       <div className="ng">
@@ -46,8 +56,7 @@ export default async function JorongDetailPage({ params }: Props) {
           <JorongHero jorong={jorong} />
           <ProfilJorongSection jorong={jorong} />
           <KepalaJorongSection jorong={jorong} />
-          <PotensiSection jorong={jorong} />
-          <AktivitasSection jorong={jorong} />
+          {umkmData.length > 0 && <PotensiSection umkm={umkmData} />}
           <JorongNavSection currentSlug={jorong.slug} />
         </main>
         <Footer />

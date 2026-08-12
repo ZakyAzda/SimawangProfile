@@ -1,10 +1,15 @@
-import type { Jorong } from "@/data/jorong";
+type DataUmkm = {
+  id: string;
+  jorong: string;
+  productUmkm: string;
+  jumlah: number;
+};
 
 interface Props {
-  jorong: Jorong;
+  umkm: DataUmkm[];
 }
 
-export function PotensiSection({ jorong }: Props) {
+export function PotensiSection({ umkm }: Props) {
   return (
     <section
       id="potensi"
@@ -50,12 +55,12 @@ export function PotensiSection({ jorong }: Props) {
             display: "grid",
             gridTemplateColumns: "repeat(4, 1fr)",
             gap: "14px",
-            marginBottom: "56px",
+            marginBottom: "20px",
           }}
         >
-          {jorong.stats.map((s) => (
+          {umkm.map((u) => (
             <div
-              key={s.label}
+              key={u.id}
               style={{
                 background: "#ffffff",
                 border: "1px solid var(--line)",
@@ -68,65 +73,13 @@ export function PotensiSection({ jorong }: Props) {
                   className="serif"
                   style={{ fontSize: "26px", fontWeight: 700, color: "var(--gray-900)" }}
                 >
-                  {s.value}
+                  {u.jumlah}
                 </span>
-                {s.unit && (
-                  <span style={{ fontSize: "12px", fontWeight: 600, color: "var(--gray-500)" }}>
-                    {s.unit}
-                  </span>
-                )}
+                <span style={{ fontSize: "12px", fontWeight: 600, color: "var(--gray-500)" }}>
+                  Unit
+                </span>
               </div>
-              <p style={{ fontSize: "12px", color: "var(--gray-500)", lineHeight: 1.4 }}>{s.label}</p>
-            </div>
-          ))}
-        </div>
-
-        <div
-          className="ng-cols-2"
-          style={{
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr",
-            gap: "20px",
-          }}
-        >
-          {jorong.highlights.map((h, i) => (
-            <div
-              key={h.title}
-              className="ng-card"
-              style={{
-                padding: "28px",
-                borderRadius: "14px",
-                position: "relative",
-              }}
-            >
-              <span
-                style={{
-                  position: "absolute",
-                  top: "24px",
-                  right: "24px",
-                  fontSize: "11px",
-                  fontWeight: 700,
-                  color: "var(--gray-300)",
-                  letterSpacing: "0.05em",
-                }}
-              >
-                {String(i + 1).padStart(2, "0")}
-              </span>
-              <h3
-                className="serif"
-                style={{
-                  fontSize: "18px",
-                  fontWeight: 700,
-                  color: "var(--gray-900)",
-                  marginBottom: "12px",
-                  paddingRight: "32px",
-                }}
-              >
-                {h.title}
-              </h3>
-              <p style={{ fontSize: "14px", color: "var(--gray-600)", lineHeight: 1.8 }}>
-                {h.description}
-              </p>
+              <p style={{ fontSize: "14px", fontWeight: 600, color: "var(--gray-700)", lineHeight: 1.4 }}>{u.productUmkm}</p>
             </div>
           ))}
         </div>

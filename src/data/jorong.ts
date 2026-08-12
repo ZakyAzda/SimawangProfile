@@ -82,11 +82,10 @@ export const dataJorong: Jorong[] = [
       "Pelestarian jalur sejarah kereta api",
     ],
     kepala: {
-      nama: "Dt. Rajo Alam",
-      periode: "2022 – Sekarang",
-      visi:
-        "Menjadikan Jorong Ombilin sebagai gerbang wisata Nagari Simawang yang ramah lingkungan, dengan ekonomi warga yang berpijak pada potensi danau dan kuliner lokal.",
-      telepon: "0812-XXXX-0001",
+      nama: "Yogi Harian Nanda",
+      periode: "Aktif",
+      visi: "Membangun jorong Ombilin yang lebih baik dan terdepan.",
+      telepon: "-",
       foto: "/images/kepala/1.jpg"
     },
   },
@@ -139,11 +138,10 @@ export const dataJorong: Jorong[] = [
       "Kerja bakti saluran irigasi tradisional",
     ],
     kepala: {
-      nama: "Syahrul Dt. Mudo",
-      periode: "2021 – Sekarang",
-      visi:
-        "Menjaga kelestarian sumber air sebagai warisan jorong, sekaligus membuka akses wisata alam yang menghormati nilai adat dan lingkungan.",
-      telepon: "0813-XXXX-0002",
+      nama: "Mira Karmila",
+      periode: "Aktif",
+      visi: "Menjaga kelestarian sumber air sebagai warisan jorong.",
+      telepon: "-",
       foto: "/images/kepala/2.jpg"
     },
   },
@@ -196,11 +194,10 @@ export const dataJorong: Jorong[] = [
       "Kunjungan edukasi budaya untuk pelajar",
     ],
     kepala: {
-      nama: "Yusrizal Dt. Penghulu",
-      periode: "2023 – Sekarang",
-      visi:
-        "Memperkuat identitas budaya Koto Gadang sebagai pusat adat Nagari Simawang, dengan pelestarian Rumah Gadang dan transmisi nilai ke generasi muda.",
-      telepon: "0814-XXXX-0003",
+      nama: "Data Belum Tersedia",
+      periode: "-",
+      visi: "Memperkuat identitas budaya Koto Gadang sebagai pusat adat Nagari Simawang.",
+      telepon: "-",
       foto: "/images/kepala/3.jpg"
     },
   },
@@ -253,11 +250,10 @@ export const dataJorong: Jorong[] = [
       "Pelatihan UMKM olahan hasil bumi",
     ],
     kepala: {
-      nama: "Efrizal Dt. Nan Tigo",
-      periode: "2022 – Sekarang",
-      visi:
-        "Menyatukan kekuatan adat dan pertanian sebagai identitas Piliang Bendang, dengan masyarakat yang mandiri secara ekonomi dan kokoh secara budaya.",
-      telepon: "0815-XXXX-0004",
+      nama: "Firman Hidayat, S.Sos",
+      periode: "Aktif",
+      visi: "Menyatukan kekuatan adat dan pertanian sebagai identitas Piliang Bendang.",
+      telepon: "-",
       foto: "/images/kepala/5.jpg"
     },
   },
@@ -310,11 +306,10 @@ export const dataJorong: Jorong[] = [
       "Kunjungan agrowisata untuk pelajar",
     ],
     kepala: {
-      nama: "M. Dt. Rajo Baso",
-      periode: "2021 – Sekarang",
-      visi:
-        "Mengembangkan Darek sebagai lumbung pangan nagari sekaligus destinasi agrowisata yang memberdayakan petani dan menjaga kelestarian lahan.",
-      telepon: "0816-XXXX-0005",
+      nama: "Harfani, SE.I, M.E",
+      periode: "Aktif",
+      visi: "Mengembangkan Darek sebagai lumbung pangan nagari sekaligus destinasi agrowisata.",
+      telepon: "-",
       foto: "/images/kepala/6.jpg"
     },
   },
@@ -367,11 +362,10 @@ export const dataJorong: Jorong[] = [
       "Posyandu dan pelayanan kesehatan warga",
     ],
     kepala: {
-      nama: "Afrizal Dt. Sati",
-      periode: "2023 – Sekarang",
-      visi:
-        "Menjadikan Padang Data sebagai pusat pelayanan dan ekonomi kreatif nagari, dengan UMKM yang berdaya saing dan fasilitas umum yang memadai.",
-      telepon: "0817-XXXX-0006",
+      nama: "Ramli",
+      periode: "Aktif",
+      visi: "Menjadikan Padang Data sebagai pusat pelayanan dan ekonomi kreatif nagari.",
+      telepon: "-",
       foto: "/images/kepala/7.jpg"
     },
   },
@@ -424,11 +418,10 @@ export const dataJorong: Jorong[] = [
       "Penanaman pohon di batas jorong",
     ],
     kepala: {
-      nama: "Hendri Dt. Nan Panjang",
-      periode: "2022 – Sekarang",
-      visi:
-        "Memperkuat kebersamaan sosial Batu Limbak sebagai fondasi pembangunan, dengan perkebunan produktif dan lingkungan yang terjaga.",
-      telepon: "0818-XXXX-0007",
+      nama: "Wandes Eviken",
+      periode: "Aktif",
+      visi: "Memperkuat kebersamaan sosial Batu Limbak sebagai fondasi pembangunan.",
+      telepon: "-",
       foto: "/images/kepala/8.jpg"
     },
   },
@@ -481,11 +474,10 @@ export const dataJorong: Jorong[] = [
       "Penghijauan lingkungan pemukiman",
     ],
     kepala: {
-      nama: "Fadil Dt. Indo Rajo",
-      periode: "2021 – Sekarang",
-      visi:
-        "Mewujudkan Baduih sebagai jorong yang produktif dan harmonis, dengan ekonomi perkebunan yang berkelanjutan dan kehidupan sosial yang solid.",
-      telepon: "0819-XXXX-0008",
+      nama: "Syafrianto",
+      periode: "Aktif",
+      visi: "Mewujudkan Baduih sebagai jorong yang produktif dan harmonis.",
+      telepon: "-",
       foto: "/images/kepala/9.jpg"
     },
   },

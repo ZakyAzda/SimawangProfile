@@ -23,7 +23,7 @@ const CSS = `
   .filament-table td { padding: 16px 24px; border-bottom: 1px solid #f3f4f6; color: #4b5563; vertical-align: middle; }
   .filament-table tr:last-child td { border-bottom: none; }
   .filament-table tr:hover { background: #f9fafb; }
-  .badge-percent { background: #e0e7ff; color: #4338ca; padding: 4px 10px; border-radius: 9999px; font-size: 12px; font-weight: 600; display: inline-block; }
+  .badge-count { background: #fef2f2; color: #991b1b; padding: 4px 10px; border-radius: 9999px; font-size: 12px; font-weight: 600; display: inline-block; }
   .table-actions { display: flex; gap: 8px; justify-content: flex-end; }
   .action-icon-btn { background: transparent; border: none; color: #6b7280; cursor: pointer; padding: 6px; border-radius: 6px; transition: all 0.2s; }
   .action-icon-btn:hover { background: #f3f4f6; color: #111827; }
@@ -124,8 +124,8 @@ export default function AdminKesehatanPage() {
       <style>{CSS}</style>
       <div className="page-header">
         <div>
-          <h1 className="page-title">Data Kesehatan</h1>
-          <p className="page-subtitle">Kelola data stunting dan fasilitas kesehatan di setiap jorong.</p>
+          <h1 className="page-title">Data Stunting</h1>
+          <p className="page-subtitle">Kelola data stunting di setiap jorong.</p>
         </div>
       </div>
 
@@ -139,7 +139,7 @@ export default function AdminKesehatanPage() {
             <thead>
               <tr>
                 <th>Jorong</th>
-                <th>Persentase Stunting</th>
+                <th>Jumlah Stunting</th>
                 <th style={{ textAlign: "right" }}>Aksi</th>
               </tr>
             </thead>
@@ -156,7 +156,7 @@ export default function AdminKesehatanPage() {
                     <tr key={item.id}>
                       <td style={{ fontWeight: 600 }}>{item.jorong}</td>
                       <td>
-                        <span className="badge-percent">{item.jumlahStunting}%</span>
+                        <span className="badge-count">{item.jumlahStunting} Anak</span>
                       </td>
                       <td>
                         <div className="table-actions">
@@ -192,7 +192,7 @@ export default function AdminKesehatanPage() {
                     />
                   </div>
                   <div className="form-group" style={{ marginBottom: 0 }}>
-                    <label className="form-label">Persentase Stunting (%)</label>
+                    <label className="form-label">Jumlah Stunting (Anak)</label>
                     <input 
                       type="number" className="form-input" min="0" placeholder="0"
                       value={formData.jumlahStunting} onChange={e => setFormData({...formData, jumlahStunting: parseInt(e.target.value) || 0})} required 

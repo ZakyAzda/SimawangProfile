@@ -24,7 +24,7 @@ const MENU_ITEMS = [
   { name: "Galeri", href: "/admin/galeri", icon: ImageIcon },
   { name: "Berita & Artikel", href: "/admin/berita", icon: FileText },
   { name: "Data Nagari", href: "/admin/data-nagari", icon: Users },
-  { name: "Data Kesehatan", href: "/admin/kesehatan", icon: HeartPulse },
+  { name: "Data Stunting", href: "/admin/kesehatan", icon: HeartPulse },
   { name: "Potensi Alam", href: "/admin/potensi-alam", icon: Leaf },
   { name: "Data Sanitasi", href: "/admin/sanitasi", icon: Droplets },
   { name: "Sejarah & Budaya", href: "/admin/sejarah", icon: Landmark },

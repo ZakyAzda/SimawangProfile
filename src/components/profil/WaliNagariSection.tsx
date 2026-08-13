@@ -1,6 +1,6 @@
 export function WaliNagariSection() {
   return (
-    <section id="walinagari" style={{ padding: "96px 0", background: "#f8f9fa", borderTop: "1px solid var(--line)" }}>
+    <section id="walinagari" style={{ padding: "96px 0", background: "#ffffff", borderTop: "1px solid var(--line)" }}>
       <div className="ng-wrap">
         <div style={{ textAlign: "center", marginBottom: "56px" }}>
           <p className="ng-label" style={{ marginBottom: "12px" }}>Pemerintahan Nagari</p>

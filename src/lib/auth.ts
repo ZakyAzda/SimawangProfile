@@ -74,5 +74,5 @@ export const authOptions: AuthOptions = {
       return session;
     }
   },
-  secret: process.env.NEXTAUTH_SECRET || "nagari-simawang-secret-key-super-secure"
+  secret: process.env.NEXTAUTH_SECRET
 };

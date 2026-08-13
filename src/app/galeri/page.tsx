@@ -89,7 +89,7 @@ export default async function GaleriPage(props: {
 
           {/* Wave divider */}
           <svg className="gal-hero-wave" viewBox="0 0 1440 60" preserveAspectRatio="none" style={{ height: 52 }}>
-            <path d="M0,30 Q360,60 720,30 Q1080,0 1440,30 L1440,60 L0,60 Z" fill="#faf8f5" />
+            <path d="M0,30 Q360,60 720,30 Q1080,0 1440,30 L1440,60 L0,60 Z" fill="#f8f9fa" />
           </svg>
         </section>
 

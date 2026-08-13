@@ -139,23 +139,23 @@
 /* ── galeri/page.tsx styles ── */
 .gal-hero {
   position: relative;
-  padding: 120px 0 80px;
+  padding: 140px 0 100px;
   overflow: hidden;
-  background: #ffffff;
-  border-bottom: 1px solid #f0f0f0;
+  background: #0b1f18; /* Dark forest green base */
+  border-bottom: none;
 }
 .gal-hero-bg {
   position: absolute; inset: 0;
-  background: radial-gradient(ellipse 80% 70% at 60% 50%, rgba(26,60,48,0.05), transparent);
+  background: radial-gradient(ellipse 80% 70% at 50% 30%, rgba(26,60,48,0.8), #0b1f18);
 }
 .gal-hero-noise {
   position: absolute; inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.02'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
 }
 .gal-hero-deco-ring {
   position: absolute;
   border-radius: 50%;
-  border: 1px solid rgba(26,60,48,0.06);
+  border: 1px solid rgba(255,255,255,0.05);
 }
 .gal-hero-content {
   position: relative; z-index: 2;
@@ -165,9 +165,10 @@
 .gal-eyebrow {
   display: inline-flex; align-items: center; gap: 8px;
   font-size: 11px; font-weight: 700; letter-spacing: 0.15em;
-  text-transform: uppercase; color: #1a3c30;
+  text-transform: uppercase; color: #fdf6e9; /* gold-ish white */
   margin-bottom: 16px;
-  background: rgba(26,60,48,0.07);
+  background: rgba(201,148,58,0.2);
+  border: 1px solid rgba(201,148,58,0.3);
   padding: 6px 14px;
   border-radius: 100px;
 }
@@ -175,35 +176,37 @@
 .gal-hero h1 {
   font-size: clamp(36px, 5vw, 64px);
   font-weight: 800; line-height: 1.05;
-  letter-spacing: -0.03em; color: #111827;
+  letter-spacing: -0.03em; color: #ffffff;
   margin-bottom: 20px;
 }
 .gal-hero-desc {
   font-size: 16px; font-weight: 400;
-  color: #6b7280; line-height: 1.75;
+  color: rgba(255,255,255,0.7); line-height: 1.75;
   max-width: 520px;
 }
 .gal-badge {
   position: absolute; top: 50%; right: 80px;
   transform: translateY(-50%);
-  background: #f8f9fa;
-  border: 1px solid #e5e7eb;
-  padding: 20px 28px; border-radius: 20px;
+  background: rgba(255,255,255,0.03);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.1);
+  padding: 24px 32px; border-radius: 20px;
   text-align: center;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.06);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.2);
 }
 .gal-badge-num {
   font-size: 44px; font-weight: 800;
-  color: #1a3c30; line-height: 1;
+  color: #ffffff; line-height: 1;
   display: block; font-family: Georgia, serif;
 }
 .gal-badge-label {
   font-size: 10px; font-weight: 600;
   letter-spacing: 0.14em; text-transform: uppercase;
-  color: #9ca3af; margin-top: 6px; display: block;
+  color: rgba(255,255,255,0.5); margin-top: 6px; display: block;
 }
 .gal-hero-wave {
-  display: none;
+  display: block;
+  position: absolute; bottom: 0; left: 0; width: 100%;
 }
 .gal-section { padding: 60px 0 100px; background: #f8f9fa; }
 .gal-section-header {

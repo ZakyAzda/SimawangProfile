@@ -58,86 +58,78 @@ export default async function GaleriPage(props: {
 
   return (
     <div className={`${inter.variable} ${merriweather.variable}`}>
-      <div className="ng">
+      <div className="ng" style={{ background: "#f8f9fa", minHeight: "100vh", display: "flex", flexDirection: "column" }}>
         <NavBar />
+        
+        <main style={{ flex: 1, padding: "120px 0 80px" }}>
+          <div className="ng-wrap" style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 24px" }}>
+            
+            <Link href="/" style={{ display: "inline-flex", alignItems: "center", gap: "8px", color: "var(--gray-500)", textDecoration: "none", fontSize: "14px", fontWeight: 600, marginBottom: "32px", transition: "color 0.2s" }}>
+              <span className="material-symbols-outlined" style={{ fontSize: "18px" }}>arrow_back</span>
+              Kembali ke Beranda
+            </Link>
 
-        {/* ── Hero Banner ── */}
-        <section className="gal-hero">
-          <div className="gal-hero-bg" />
-          <div className="gal-hero-noise" />
-
-          {/* Decorative rings */}
-          <div className="gal-hero-deco-ring" style={{ width: 400, height: 400, top: -100, right: -80, opacity: 0.5 }} />
-          <div className="gal-hero-deco-ring" style={{ width: 220, height: 220, top: 30, right: 120, opacity: 0.3 }} />
-          <div className="gal-hero-deco-ring" style={{ width: 600, height: 600, bottom: -200, left: -100, opacity: 0.2 }} />
-
-          {/* Count badge */}
-          {totalFoto > 0 && (
-            <div className="gal-badge">
-              <span className="gal-badge-num serif">{totalFoto}</span>
-              <span className="gal-badge-label">Foto</span>
+            <div style={{ marginBottom: "48px" }}>
+              <p style={{ fontSize: "12px", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--accent)", marginBottom: "12px" }}>
+                Koleksi Foto
+              </p>
+              <h1 className="serif" style={{ fontSize: "clamp(32px, 4vw, 42px)", fontWeight: 700, color: "var(--gray-900)", letterSpacing: "-0.02em", marginBottom: "16px" }}>
+                Galeri Nagari Simawang
+              </h1>
+              <p style={{ fontSize: "16px", color: "var(--gray-600)", lineHeight: 1.6, maxWidth: "600px" }}>
+                Kumpulan potret kehidupan, budaya, kegiatan kemasyarakatan, dan program pembangunan Nagari Simawang.
+              </p>
             </div>
-          )}
-
-          <div className="ng-wrap gal-hero-content">
-            <p className="gal-eyebrow">Dokumentasi Visual</p>
-            <h1 className="serif">Galeri Nagari<br />Simawang</h1>
-            <p className="gal-hero-desc">
-              Kumpulan potret kehidupan, budaya, kegiatan kemasyarakatan, dan program pembangunan Nagari Simawang.
-            </p>
-          </div>
-
-          {/* Wave divider */}
-          <svg className="gal-hero-wave" viewBox="0 0 1440 60" preserveAspectRatio="none" style={{ height: 52 }}>
-            <path d="M0,30 Q360,60 720,30 Q1080,0 1440,30 L1440,60 L0,60 Z" fill="#f8f9fa" />
-          </svg>
-        </section>
-
-        {/* ── Main Content ── */}
-        <section className="gal-section">
-          <div className="ng-wrap">
 
             {/* Stats Bar */}
             {totalFoto > 0 && (
-              <div className="gal-stats">
-                <div className="gal-stat-item">
-                  <div className="gal-stat-val serif">{totalFoto}</div>
-                  <div className="gal-stat-lbl">Total Foto</div>
+              <div style={{ background: "#fff", padding: "32px", borderRadius: "24px", border: "1px solid rgba(0,0,0,0.06)", boxShadow: "0 4px 40px rgba(0,0,0,0.03)", display: "flex", gap: "32px", marginBottom: "48px", flexWrap: "wrap" }}>
+                <div style={{ flex: 1, minWidth: "200px" }}>
+                  <p style={{ fontSize: "12px", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--gray-500)", marginBottom: "8px" }}>
+                    Total Foto
+                  </p>
+                  <h3 className="serif" style={{ fontSize: "36px", fontWeight: 700, color: "var(--gray-900)", marginBottom: "0" }}>
+                    {totalFoto}
+                  </h3>
                 </div>
-                <div className="gal-stat-item">
-                  <div className="gal-stat-val serif">8</div>
-                  <div className="gal-stat-lbl">Jorong</div>
-                </div>
-                <div className="gal-stat-item">
-                  <div className="gal-stat-val serif">2024</div>
-                  <div className="gal-stat-lbl">Tahun Aktif</div>
+                <div style={{ width: "1px", background: "var(--gray-200)", margin: "0 16px" }} />
+                <div style={{ flex: 1, minWidth: "200px" }}>
+                  <p style={{ fontSize: "12px", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--gray-500)", marginBottom: "8px" }}>
+                    Kategori
+                  </p>
+                  <h3 className="serif" style={{ fontSize: "36px", fontWeight: 700, color: "var(--gray-900)", marginBottom: "0" }}>
+                    {categories.length}
+                  </h3>
                 </div>
               </div>
             )}
 
-            {/* Section header */}
-            <div className="gal-section-header">
-              <div>
-                <div className="gal-eyebrow" style={{ marginBottom: "10px" }}>Koleksi Foto</div>
-                <h2 className="serif" style={{ fontSize: "clamp(26px, 3vw, 34px)", fontWeight: 700, color: "var(--gray-900)", letterSpacing: "-0.02em", lineHeight: 1.1 }}>
-                  Momen &amp; Dokumentasi
-                </h2>
-              </div>
-              <span style={{ fontSize: "13px", color: "var(--gray-500)", fontWeight: 500 }}>
-                Menampilkan {totalFoto} foto
-              </span>
-            </div>
-            <div className="gal-divider" style={{ marginBottom: "24px" }} />
-
             {/* Category Filter */}
             {categories.length > 0 && (
-              <div className="gal-filter">
-                <Link href="/galeri" className={`gal-filter-btn ${!currentCat ? 'active' : ''}`}>Semua</Link>
+              <div style={{ display: "flex", gap: "10px", flexWrap: "wrap", marginBottom: "32px" }}>
+                <Link 
+                  href="/galeri" 
+                  style={{
+                    padding: "10px 20px", borderRadius: "100px", fontSize: "14px", fontWeight: 600, textDecoration: "none", transition: "all 0.2s ease",
+                    background: !currentCat ? "var(--gray-900)" : "#fff",
+                    color: !currentCat ? "#fff" : "var(--gray-600)",
+                    border: `1px solid ${!currentCat ? "var(--gray-900)" : "rgba(0,0,0,0.1)"}`,
+                    boxShadow: !currentCat ? "0 4px 12px rgba(0,0,0,0.1)" : "none"
+                  }}
+                >
+                  Semua
+                </Link>
                 {categories.map(cat => (
                   <Link 
                     key={cat} 
                     href={`/galeri?category=${encodeURIComponent(cat)}`} 
-                    className={`gal-filter-btn ${currentCat === cat ? 'active' : ''}`}
+                    style={{
+                      padding: "10px 20px", borderRadius: "100px", fontSize: "14px", fontWeight: 600, textDecoration: "none", transition: "all 0.2s ease",
+                      background: currentCat === cat ? "var(--gray-900)" : "#fff",
+                      color: currentCat === cat ? "#fff" : "var(--gray-600)",
+                      border: `1px solid ${currentCat === cat ? "var(--gray-900)" : "rgba(0,0,0,0.1)"}`,
+                      boxShadow: currentCat === cat ? "0 4px 12px rgba(0,0,0,0.1)" : "none"
+                    }}
                   >
                     {cat}
                   </Link>
@@ -147,8 +139,8 @@ export default async function GaleriPage(props: {
 
             {/* Grid / Empty state */}
             {filteredItems.length === 0 ? (
-              <div className="gal-empty">
-                <div className="material-symbols-outlined gal-empty-icon">photo_library</div>
+              <div style={{ textAlign: "center", padding: "80px 24px", background: "#fff", borderRadius: "24px", border: "1px dashed var(--gray-300)" }}>
+                <div className="material-symbols-outlined" style={{ fontSize: "52px", color: "var(--gray-300)", marginBottom: "16px" }}>photo_library</div>
                 <p className="serif" style={{ fontSize: "22px", fontWeight: 700, color: "var(--gray-800)", marginBottom: "8px" }}>
                   Belum Ada Foto
                 </p>
@@ -159,8 +151,9 @@ export default async function GaleriPage(props: {
             ) : (
               <GalleryClientView filteredItems={filteredItems} />
             )}
+
           </div>
-        </section>
+        </main>
 
         <Footer />
       </div>

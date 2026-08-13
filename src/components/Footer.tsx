@@ -69,7 +69,7 @@ export function Footer() {
               Portal resmi pemerintahan Nagari Simawang — transparansi dan keterbukaan informasi publik.
             </p>
             <p style={{ fontSize: "11px", color: "rgba(255,255,255,0.25)", marginTop: "24px" }}>
-              © 2024 Pemerintah Nagari Simawang. Hak Cipta Dilindungi.
+              KKN ll simawang 2026 dan pemerintah nagari Simawang. Hak Cipta Dilindungi.
             </p>
           </div>
 

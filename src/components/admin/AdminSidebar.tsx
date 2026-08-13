@@ -19,18 +19,33 @@ import {
   Users
 } from "lucide-react";
 
-const MENU_ITEMS = [
-  { name: "Dasbor", href: "/admin", icon: LayoutDashboard },
-  { name: "Galeri", href: "/admin/galeri", icon: ImageIcon },
-  { name: "Berita & Artikel", href: "/admin/berita", icon: FileText },
-  { name: "Data Nagari", href: "/admin/data-nagari", icon: Users },
-  { name: "Data Stunting", href: "/admin/kesehatan", icon: HeartPulse },
-  { name: "Potensi Alam", href: "/admin/potensi-alam", icon: Leaf },
-  { name: "Data Sanitasi", href: "/admin/sanitasi", icon: Droplets },
-  { name: "Sejarah & Budaya", href: "/admin/sejarah", icon: Landmark },
-  { name: "Data UMKM", href: "/admin/umkm", icon: Store },
-  { name: "Pengaduan Warga", href: "/admin/pengaduan", icon: MessageSquareWarning },
-  { name: "Pengaturan", href: "/admin/pengaturan", icon: Settings },
+const MENU_GROUPS = [
+  {
+    label: "Utama",
+    items: [
+      { name: "Dasbor", href: "/admin", icon: LayoutDashboard },
+      { name: "Galeri", href: "/admin/galeri", icon: ImageIcon },
+      { name: "Berita & Artikel", href: "/admin/berita", icon: FileText },
+    ]
+  },
+  {
+    label: "Data & Informasi",
+    items: [
+      { name: "Data Nagari", href: "/admin/data-nagari", icon: Users },
+      { name: "Data Stunting", href: "/admin/kesehatan", icon: HeartPulse },
+      { name: "Data Sanitasi", href: "/admin/sanitasi", icon: Droplets },
+      { name: "Potensi Alam", href: "/admin/potensi-alam", icon: Leaf },
+      { name: "Sejarah & Budaya", href: "/admin/sejarah", icon: Landmark },
+      { name: "Data UMKM", href: "/admin/umkm", icon: Store },
+    ]
+  },
+  {
+    label: "Layanan & Sistem",
+    items: [
+      { name: "Pengaduan Warga", href: "/admin/pengaduan", icon: MessageSquareWarning },
+      { name: "Pengaturan", href: "/admin/pengaturan", icon: Settings },
+    ]
+  }
 ];
 
 export default function AdminSidebar() {
@@ -46,51 +61,47 @@ export default function AdminSidebar() {
       </div>
 
       <nav className="sidebar-nav">
-        <ul className="sidebar-menu">
-          {MENU_ITEMS.map((item) => {
-            const isActive = item.href === "/admin" 
-              ? pathname === "/admin" 
-              : pathname === item.href || pathname.startsWith(`${item.href}/`);
-            
-            const Icon = item.icon;
+          {MENU_GROUPS.map((group, gIdx) => (
+            <div key={group.label} className="sidebar-group">
+              <h4 className="sidebar-group-title">{group.label}</h4>
+              <ul className="sidebar-menu">
+                {group.items.map((item) => {
+                  const isActive = item.href === "/admin" 
+                    ? pathname === "/admin" 
+                    : pathname === item.href || pathname.startsWith(`${item.href}/`);
+                  
+                  const Icon = item.icon;
 
-            return (
-              <li key={item.name} className="sidebar-item">
-                <Link 
-                  href={item.href} 
-                  className={`sidebar-link ${isActive ? "active" : ""}`}
-                  style={{
-                    color: isActive ? "#ffffff" : "rgba(255, 255, 255, 0.6)",
-                    fontWeight: isActive ? 700 : 500,
-                  }}
-                >
-                  {isActive && (
-                    <motion.div 
-                      layoutId="sidebar-active-indicator"
-                      className="sidebar-active-indicator"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                    />
-                  )}
-                  {isActive && (
-                    <motion.div 
-                      layoutId="sidebar-active"
-                      className="sidebar-active-bg"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                    />
-                  )}
-                  <span className="sidebar-link-content">
-                    <Icon size={20} className="sidebar-icon" />
-                    <span className="sidebar-label">{item.name}</span>
-                  </span>
-                </Link>
-              </li>
-            );
-          })}
-        </ul>
+                  return (
+                    <li key={item.name} className="sidebar-item">
+                      <Link 
+                        href={item.href} 
+                        className={`sidebar-link ${isActive ? "active" : ""}`}
+                        style={{
+                          color: isActive ? "#111827" : "#4b5563",
+                          fontWeight: isActive ? 600 : 500,
+                        }}
+                      >
+                        {isActive && (
+                          <motion.div 
+                            layoutId="sidebar-active"
+                            className="sidebar-active-bg"
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ duration: 0.2 }}
+                          />
+                        )}
+                        <span className="sidebar-link-content">
+                          <Icon size={20} className="sidebar-icon" />
+                          <span className="sidebar-label">{item.name}</span>
+                        </span>
+                      </Link>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+          ))}
       </nav>
 
       <div className="sidebar-footer">
@@ -102,15 +113,15 @@ export default function AdminSidebar() {
 
       <style jsx>{`
         .sidebar {
-          width: 280px;
+          width: 260px;
           height: 100vh;
-          background: #0b1f18;
+          background: #ffffff;
           display: flex;
           flex-direction: column;
           position: sticky;
           top: 0;
-          border-right: 1px solid rgba(255, 255, 255, 0.05);
-          color: #fff;
+          border-right: 1px solid #e5e7eb;
+          color: #111827;
           z-index: 50;
         }
 
@@ -125,14 +136,15 @@ export default function AdminSidebar() {
         
         .sidebar-logo-text {
           font-family: var(--font-display, serif);
-          font-size: 24px;
+          font-size: 22px;
           font-weight: 700;
           letter-spacing: -0.02em;
+          color: #111827;
         }
         
         .sidebar-logo-dot {
-          color: #c9943a;
-          font-size: 28px;
+          color: #111827;
+          font-size: 24px;
           font-weight: 700;
           line-height: 1;
         }
@@ -141,6 +153,23 @@ export default function AdminSidebar() {
           flex: 1;
           padding: 0 16px;
           overflow-y: auto;
+        }
+
+        .sidebar-group {
+          margin-bottom: 24px;
+        }
+        
+        .sidebar-group:last-child {
+          margin-bottom: 12px;
+        }
+
+        .sidebar-group-title {
+          font-size: 11px;
+          font-weight: 700;
+          text-transform: uppercase;
+          letter-spacing: 0.1em;
+          color: #9ca3af;
+          margin: 0 0 12px 16px;
         }
 
         .sidebar-menu {
@@ -160,42 +189,31 @@ export default function AdminSidebar() {
           display: flex;
           align-items: center;
           justify-content: space-between;
-          padding: 14px 16px;
-          border-radius: 12px;
-          color: rgba(255, 255, 255, 0.6);
+          padding: 12px 16px;
+          border-radius: 10px;
+          color: #4b5563;
           text-decoration: none;
           position: relative;
-          transition: color 0.3s ease;
+          transition: all 0.2s ease;
           font-weight: 500;
-          font-size: 15px;
+          font-size: 14px;
         }
 
         .sidebar-link:hover {
-          color: rgba(255, 255, 255, 0.9);
+          color: #111827;
+          background: #f9fafb;
         }
 
         .sidebar-link.active {
-          color: #fff;
-          font-weight: 700;
+          color: #111827;
+          font-weight: 600;
         }
 
         .sidebar-active-bg {
           position: absolute;
           inset: 0;
-          background: rgba(201, 148, 58, 0.1);
-          border-radius: 12px;
-          border: 1px solid rgba(201, 148, 58, 0.2);
-        }
-
-        .sidebar-active-indicator {
-          position: absolute;
-          left: -16px;
-          top: 20%;
-          bottom: 20%;
-          width: 4px;
-          background: #c9943a;
-          border-radius: 0 4px 4px 0;
-          box-shadow: 0 0 10px rgba(201, 148, 58, 0.5);
+          background: #f3f4f6;
+          border-radius: 10px;
         }
 
         .sidebar-link-content {
@@ -212,28 +230,28 @@ export default function AdminSidebar() {
 
         .sidebar-footer {
           padding: 24px 16px;
-          border-top: 1px solid rgba(255, 255, 255, 0.05);
+          border-top: 1px solid #e5e7eb;
         }
 
         .sidebar-logout {
           width: 100%;
           display: flex;
           align-items: center;
-          gap: 16px;
-          padding: 14px 16px;
+          gap: 12px;
+          padding: 12px 16px;
           background: transparent;
           border: none;
-          border-radius: 12px;
-          color: #fca5a5;
-          font-size: 15px;
+          border-radius: 10px;
+          color: #ef4444;
+          font-size: 14px;
           font-weight: 500;
           cursor: pointer;
-          transition: all 0.3s ease;
+          transition: all 0.2s ease;
         }
 
         .sidebar-logout:hover {
-          background: rgba(239, 68, 68, 0.1);
-          color: #f87171;
+          background: #fef2f2;
+          color: #dc2626;
         }
       `}</style>
     </aside>

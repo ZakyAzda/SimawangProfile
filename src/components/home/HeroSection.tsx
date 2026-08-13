@@ -1,14 +1,58 @@
 import Link from "next/link";
 import { HeroSlideshow } from "./HeroSlideshow";
 
+const HERO_CSS = `
+  .hero-cta-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 15px 32px;
+    background: #ffffff;
+    color: #111827;
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: 100px;
+    transition: all 0.25s ease;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+  }
+  .hero-cta-primary:hover {
+    background: #f9fafb;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px rgba(0,0,0,0.3);
+  }
+  .hero-cta-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 15px 28px;
+    background: transparent;
+    border: 1.5px solid rgba(255,255,255,0.35);
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    border-radius: 100px;
+    transition: all 0.25s ease;
+    backdrop-filter: blur(8px);
+  }
+  .hero-cta-secondary:hover {
+    background: rgba(255,255,255,0.12);
+    border-color: rgba(255,255,255,0.55);
+  }
+`;
+
 export function HeroSection() {
   return (
     <section
       style={{ position: "relative", width: "100%", minHeight: "100vh", display: "flex", flexDirection: "column", justifyContent: "center", overflow: "hidden" }}
     >
+      <style>{HERO_CSS}</style>
+
       {/* ── Slideshow background ── */}
       <HeroSlideshow />
-      {/* Clean dark overlay — sits above slides (z:2) */}
+
+      {/* Clean dark overlay */}
       <div style={{ position: "absolute", inset: 0, zIndex: 2, background: "linear-gradient(0deg, rgba(10,10,10,0.85) 0%, rgba(10,10,10,0.4) 50%, rgba(10,10,10,0.15) 100%)" }} />
 
       <div className="ng-wrap" style={{ position: "relative", width: "100%", padding: "0 40px", zIndex: 3, marginTop: "60px" }}>
@@ -48,33 +92,11 @@ export function HeroSection() {
         </p>
 
         <div style={{ display: "flex", gap: "14px", flexWrap: "wrap" }}>
-          <Link
-            href="/profil"
-            style={{
-              display: "inline-flex", alignItems: "center", gap: "8px",
-              padding: "14px 28px",
-              background: "var(--accent)",
-              color: "#fff",
-              fontSize: "14px", fontWeight: 600,
-              textDecoration: "none",
-              transition: "background 0.2s ease",
-            }}
-          >
+          <Link href="/profil" className="hero-cta-primary">
             Tentang Nagari
-            <span className="material-symbols-outlined" style={{ fontSize: "16px" }}>arrow_forward</span>
+            <span className="material-symbols-outlined" style={{ fontSize: "18px" }}>arrow_forward</span>
           </Link>
-          <Link
-            href="/infografis/nagari"
-            style={{
-              display: "inline-flex", alignItems: "center", gap: "8px",
-              padding: "14px 28px",
-              background: "transparent",
-              border: "1.5px solid rgba(255,255,255,0.45)",
-              color: "#fff",
-              fontSize: "14px", fontWeight: 500,
-              textDecoration: "none",
-            }}
-          >
+          <Link href="/infografis/nagari" className="hero-cta-secondary">
             Lihat Data
           </Link>
         </div>

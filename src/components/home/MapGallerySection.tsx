@@ -45,7 +45,7 @@ export function MapGallerySection() {
   };
 
   return (
-    <section style={{ width: "100%", padding: "80px 0", background: "transparent" }}>
+    <section style={{ width: "100%", padding: "100px 0", background: "#f8f9fa" }}>
       <div className="ng-wrap">
         <div style={{ marginBottom: "36px", textAlign: "center" }}>
           <p className="ng-label" style={{ marginBottom: "10px", color: "var(--gray-500)", justifyContent: "center" }}>Pemetaan</p>

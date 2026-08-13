@@ -393,7 +393,7 @@ export default function AdminBeritaPage() {
       const url = editingId ? `/api/posts/${editingId}` : "/api/posts";
       const method = editingId ? "PATCH" : "POST";
       
-      const payload = { ...formData, authorName: adminName };
+      const payload = { ...formData, authorName: "Admin Simawang" };
       
       const res = await fetch(url, {
         method,

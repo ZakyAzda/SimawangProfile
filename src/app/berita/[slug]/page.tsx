@@ -1,4 +1,4 @@
-﻿import { Metadata } from "next";
+import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import prisma from "@/lib/db";
 import { NavBar } from "@/components/NavBar";
@@ -6,6 +6,7 @@ import { Footer } from "@/components/Footer";
 import Link from "next/link";
 import { Inter, Merriweather } from "next/font/google";
 import { ReadingProgress } from "./ReadingProgress";
+import { unstable_noStore as noStore } from "next/cache";
 
 export const dynamic = "force-dynamic";
 
@@ -60,6 +61,7 @@ export default async function BeritaDetailPage({
 }: {
   params: Promise<{ slug: string }>;
 }) {
+  noStore();
   const { slug } = await params;
   const post = await prisma.post.findUnique({ where: { slug } });
   if (!post) notFound();

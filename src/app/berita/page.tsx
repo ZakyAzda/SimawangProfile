@@ -6,6 +6,7 @@ import prisma from "@/lib/db";
 import Link from "next/link";
 import Image from "next/image";
 import { CalendarRange, Clock, ArrowRight, Search } from "lucide-react";
+import { unstable_noStore as noStore } from "next/cache";
 
 export const dynamic = "force-dynamic";
 
@@ -87,6 +88,7 @@ export default async function BeritaPage({
 }: {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }) {
+  noStore();
   const params = await searchParams;
   const q = typeof params.q === 'string' ? params.q : "";
 
@@ -109,16 +111,22 @@ export default async function BeritaPage({
     take: 4,
   });
 
-  const featuredPost = posts.length > 0 ? posts[0] : null;
+  const sortedByViews = [...posts].sort((a, b) => b.views - a.views);
+  
+  // 1. Featured Post (Sorotan Utama) is the #1 Most Viewed
+  const featuredPost = sortedByViews.length > 0 ? sortedByViews[0] : null;
 
-  // Top 4 by views for sidebar
-  const popularPosts = [...posts].sort((a, b) => b.views - a.views).slice(0, 4);
+  // 2. Top 4 by views for sidebar (excluding the #1 featured post)
+  const popularPosts = sortedByViews.slice(1, 5);
 
-  // Next 4 for Grid
-  const topStoriesGrid = posts.length > 1 ? posts.slice(1, 5) : [];
+  // 3. Filter out featured post from the recent posts list to avoid duplicates
+  const recentPosts = posts.filter(p => p.id !== featuredPost?.id);
 
-  // Remaining for Latest Stories list
-  const latestStories = q ? posts : (posts.length > 5 ? posts.slice(5) : []);
+  // 4. Next 4 recent posts for Grid (Pilihan Redaksi)
+  const topStoriesGrid = recentPosts.slice(0, 4);
+
+  // 5. Remaining for Latest Stories list
+  const latestStories = q ? posts : recentPosts.slice(4);
 
   return (
     <div className={`${inter.variable} ${merriweather.variable}`}>

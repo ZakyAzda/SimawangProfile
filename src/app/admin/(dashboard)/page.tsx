@@ -2,16 +2,17 @@ import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/lib/auth";
 import prisma from "@/lib/db";
 import Link from "next/link";
-import { Image as ImageIcon, FileText, Users, ArrowRight } from "lucide-react";
+import { Image as ImageIcon, FileText, Users, ArrowRight, MessageSquareWarning } from "lucide-react";
 
 export default async function AdminDashboardPage() {
   const session = await getServerSession(authOptions);
 
   // Fetch metrics
-  const [totalGallery, totalPosts, totalUsers] = await Promise.all([
+  const [totalGallery, totalPosts, totalUsers, totalPengaduan] = await Promise.all([
     prisma.galleryItem.count(),
     prisma.post.count(),
     prisma.user.count(),
+    prisma.pengaduan.count(),
   ]);
 
   const STATS = [
@@ -19,22 +20,29 @@ export default async function AdminDashboardPage() {
       title: "Total Foto Galeri",
       value: totalGallery,
       icon: ImageIcon,
-      color: "#10b981", // Emerald
-      bg: "#ecfdf5",
+      color: "#111827", // Dark Gray
+      bg: "#f3f4f6", // Light Gray
     },
     {
       title: "Total Artikel & Berita",
       value: totalPosts,
       icon: FileText,
-      color: "#3b82f6", // Blue
-      bg: "#eff6ff",
+      color: "#111827",
+      bg: "#f3f4f6",
     },
     {
       title: "Admin & Pengguna",
       value: totalUsers,
       icon: Users,
-      color: "#8b5cf6", // Purple
-      bg: "#f5f3ff",
+      color: "#111827",
+      bg: "#f3f4f6",
+    },
+    {
+      title: "Total Pengaduan",
+      value: totalPengaduan,
+      icon: MessageSquareWarning,
+      color: "#111827",
+      bg: "#f3f4f6",
     },
   ];
 
@@ -42,7 +50,7 @@ export default async function AdminDashboardPage() {
     <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
       <div style={{ marginBottom: "32px" }}>
         <h1 style={{ fontSize: "28px", fontWeight: 700, color: "#111827", margin: "0 0 8px 0" }}>
-          Selamat Datang, {session?.user?.name || "Admin"}! 👋
+          Selamat Datang, {session?.user?.name || "Admin"}!
         </h1>
         <p style={{ fontSize: "15px", color: "#6b7280", margin: 0 }}>
           Berikut adalah ringkasan data Nagari Simawang hari ini.
@@ -125,7 +133,7 @@ export default async function AdminDashboardPage() {
               <h3 style={{ margin: "0 0 4px 0", fontSize: "16px", fontWeight: 600, color: "#111827" }}>Kelola Galeri</h3>
               <p style={{ margin: 0, fontSize: "14px", color: "#6b7280" }}>Tambah atau hapus foto dokumentasi nagari.</p>
             </div>
-            <div style={{ color: "#c9943a" }}>
+            <div style={{ color: "#111827" }}>
               <ArrowRight size={20} />
             </div>
           </div>
@@ -137,7 +145,7 @@ export default async function AdminDashboardPage() {
               <h3 style={{ margin: "0 0 4px 0", fontSize: "16px", fontWeight: 600, color: "#111827" }}>Kelola Berita</h3>
               <p style={{ margin: 0, fontSize: "14px", color: "#6b7280" }}>Tulis artikel, pengumuman, atau berita nagari.</p>
             </div>
-            <div style={{ color: "#c9943a" }}>
+            <div style={{ color: "#111827" }}>
               <ArrowRight size={20} />
             </div>
           </div>

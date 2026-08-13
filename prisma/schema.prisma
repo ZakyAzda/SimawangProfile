@@ -80,6 +80,7 @@ model Pengaduan {
   nama      String
   noWa      String?
   kategori  String
+  jorong    String?
   laporan   String
   status    String   @default("Pending")
   createdAt DateTime @default(now())

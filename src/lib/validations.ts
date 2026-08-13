@@ -105,6 +105,7 @@ export const CreatePengaduanSchema = z.object({
   nama: z.string().min(1, "Nama wajib diisi"),
   noWa: z.string().optional(),
   kategori: z.string().min(1, "Kategori wajib diisi"),
+  jorong: z.string().optional(),
   laporan: z.string().min(1, "Isi laporan wajib diisi"),
 });
 

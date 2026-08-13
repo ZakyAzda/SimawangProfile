@@ -8,6 +8,7 @@ type Pengaduan = {
   id: string;
   nama: string;
   noWa: string | null;
+  jorong: string | null;
   kategori: string;
   laporan: string;
   status: string;
@@ -136,6 +137,7 @@ export default function AdminPengaduanPage() {
               <tr>
                 <th>Tanggal</th>
                 <th>Pengirim</th>
+                <th>Jorong</th>
                 <th>Kategori</th>
                 <th>Status</th>
                 <th style={{ textAlign: "right" }}>Aksi</th>
@@ -155,6 +157,9 @@ export default function AdminPengaduanPage() {
                     <td>
                       <div style={{ fontWeight: 600, color: "#111827" }}>{item.nama}</div>
                       {item.noWa && <div style={{ fontSize: "12px", marginTop: "2px" }}>WA: {item.noWa}</div>}
+                    </td>
+                    <td>
+                      <div style={{ color: "#4b5563" }}>{item.jorong || "-"}</div>
                     </td>
                     <td>
                       <span style={{ 
@@ -219,6 +224,9 @@ export default function AdminPengaduanPage() {
                   <div>
                     <div className="detail-label">Tanggal Laporan</div>
                     <div className="detail-value">{formatDate(selectedItem.createdAt)}</div>
+                    
+                    <div className="detail-label" style={{ marginTop: "16px" }}>Jorong</div>
+                    <div className="detail-value">{selectedItem.jorong || "-"}</div>
                   </div>
                 </div>
 

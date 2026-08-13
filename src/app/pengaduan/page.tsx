@@ -6,6 +6,7 @@ import { Footer } from "@/components/Footer";
 import { Inter, Merriweather } from "next/font/google";
 import { Send, CheckCircle, Loader2 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { dataJorong } from "@/data/jorong";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -182,6 +183,7 @@ export default function PengaduanWargaPage() {
   const [formData, setFormData] = useState({
     nama: "",
     noWa: "",
+    jorong: "",
     kategori: "Infrastruktur",
     laporan: "",
   });
@@ -253,7 +255,7 @@ export default function PengaduanWargaPage() {
                       Terima kasih, laporan Anda telah masuk ke sistem kami dan akan segera ditindaklanjuti oleh Pemerintah Nagari Simawang.
                     </p>
                     <button className="btn-reset" onClick={() => {
-                      setFormData({ nama: "", noWa: "", kategori: "Infrastruktur", laporan: "" });
+                      setFormData({ nama: "", noWa: "", jorong: "", kategori: "Infrastruktur", laporan: "" });
                       setIsSuccess(false);
                     }}>
                       Kirim Laporan Lain
@@ -291,6 +293,20 @@ export default function PengaduanWargaPage() {
                       <span style={{ display: "block", fontSize: "12px", color: "var(--gray-500)", marginTop: "6px" }}>
                         Agar kami bisa menghubungi Anda jika dibutuhkan tindak lanjut.
                       </span>
+                    </div>
+
+                    <div className="form-group">
+                      <label className="form-label">Jorong (Opsional)</label>
+                      <select 
+                        className="form-input" 
+                        value={formData.jorong} 
+                        onChange={e => setFormData({...formData, jorong: e.target.value})}
+                      >
+                        <option value="">-- Pilih Jorong (Boleh dikosongkan) --</option>
+                        {dataJorong.map((j) => (
+                          <option key={j.slug} value={j.nama}>{j.nama}</option>
+                        ))}
+                      </select>
                     </div>
 
                     <div className="form-group">

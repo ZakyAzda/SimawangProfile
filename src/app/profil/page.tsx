@@ -4,6 +4,7 @@ import { Footer }          from "@/components/Footer";
 import { ProfilHero }      from "@/components/profil/ProfilHero";
 import { SejarahSection }  from "@/components/profil/SejarahSection";
 import { SukuSection }     from "@/components/profil/SukuSection";
+import { WaliNagariSection } from "@/components/profil/WaliNagariSection";
 import { PemimpinSection } from "@/components/profil/PemimpinSection";
 
 export const metadata = {
@@ -99,6 +100,7 @@ export default function ProfilPage() {
           <ProfilHero />
           <SejarahSection />
           <SukuSection />
+          <WaliNagariSection />
           <PemimpinSection />
         </main>
         <Footer />

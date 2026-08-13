@@ -86,7 +86,7 @@ export const dataJorong: Jorong[] = [
       periode: "Aktif",
       visi: "Membangun jorong Ombilin yang lebih baik dan terdepan.",
       telepon: "-",
-      foto: "/images/kepala/1.jpg"
+      foto: ""
     },
   },
   {
@@ -142,7 +142,7 @@ export const dataJorong: Jorong[] = [
       periode: "Aktif",
       visi: "Menjaga kelestarian sumber air sebagai warisan jorong.",
       telepon: "-",
-      foto: "/images/kepala/2.jpg"
+      foto: "/images/kepala/Jorong Pincuran Gadang.jpeg"
     },
   },
   {
@@ -198,7 +198,7 @@ export const dataJorong: Jorong[] = [
       periode: "-",
       visi: "Memperkuat identitas budaya Koto Gadang sebagai pusat adat Nagari Simawang.",
       telepon: "-",
-      foto: "/images/kepala/3.jpg"
+      foto: "/images/kepala/Jorong Koto Gadang.png"
     },
   },
   {
@@ -254,7 +254,7 @@ export const dataJorong: Jorong[] = [
       periode: "Aktif",
       visi: "Menyatukan kekuatan adat dan pertanian sebagai identitas Piliang Bendang.",
       telepon: "-",
-      foto: "/images/kepala/5.jpg"
+      foto: "/images/kepala/Jorong Piliang Bendang.jpeg"
     },
   },
   {
@@ -310,7 +310,7 @@ export const dataJorong: Jorong[] = [
       periode: "Aktif",
       visi: "Mengembangkan Darek sebagai lumbung pangan nagari sekaligus destinasi agrowisata.",
       telepon: "-",
-      foto: "/images/kepala/6.jpg"
+      foto: "/images/kepala/Jorong darek.jpeg"
     },
   },
   {
@@ -366,7 +366,7 @@ export const dataJorong: Jorong[] = [
       periode: "Aktif",
       visi: "Menjadikan Padang Data sebagai pusat pelayanan dan ekonomi kreatif nagari.",
       telepon: "-",
-      foto: "/images/kepala/7.jpg"
+      foto: "/images/kepala/Jorong Padang Datar.png"
     },
   },
   {
@@ -422,7 +422,7 @@ export const dataJorong: Jorong[] = [
       periode: "Aktif",
       visi: "Memperkuat kebersamaan sosial Batu Limbak sebagai fondasi pembangunan.",
       telepon: "-",
-      foto: "/images/kepala/8.jpg"
+      foto: "/images/kepala/Jorong Batu Limbak.png"
     },
   },
   {
@@ -478,7 +478,7 @@ export const dataJorong: Jorong[] = [
       periode: "Aktif",
       visi: "Mewujudkan Baduih sebagai jorong yang produktif dan harmonis.",
       telepon: "-",
-      foto: "/images/kepala/9.jpg"
+      foto: "/images/kepala/Jorong baduih.png"
     },
   },
 ];

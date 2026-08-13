@@ -8,6 +8,7 @@ import { GallerySection } from "@/components/home/GallerySection";
 import prisma from "@/lib/db";
 import { StatsSection } from "@/components/home/StatsSection";
 import { MapGallerySection } from "@/components/home/MapGallerySection";
+import { WaliNagariShortSection } from "@/components/home/WaliNagariShortSection";
 
 export const dynamic = "force-dynamic";
 
@@ -44,6 +45,7 @@ export default async function HomePage() {
         <main style={{ width: "100%", display: "flex", flexDirection: "column" }}>
           <HeroSection/>
           <StatsSection/>
+          <WaliNagariShortSection />
           <NewsSection posts={posts} />
           <GallerySection galleryItems={galleryItems} />
           <MapGallerySection />

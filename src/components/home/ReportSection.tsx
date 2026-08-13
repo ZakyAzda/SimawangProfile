@@ -1,11 +1,13 @@
 "use client";
 
 import { useState } from "react";
+import { dataJorong } from "@/data/jorong";
 
 export function ReportSection() {
   const [formData, setFormData] = useState({
     nama: "",
     noWa: "",
+    jorong: "",
     kategori: "Infrastruktur",
     laporan: "",
   });
@@ -33,7 +35,7 @@ export function ReportSection() {
       if (!res.ok) throw new Error(data.message || "Gagal mengirim laporan");
 
       setStatus("success");
-      setFormData({ nama: "", noWa: "", kategori: "Infrastruktur", laporan: "" });
+      setFormData({ nama: "", noWa: "", jorong: "", kategori: "Infrastruktur", laporan: "" });
     } catch (error: any) {
       setStatus("error");
       setErrorMessage(error.message);
@@ -99,15 +101,25 @@ export function ReportSection() {
                 </div>
               </div>
 
-              <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-                <label style={{ fontSize: "12px", fontWeight: 600, color: "var(--gray-700)" }}>Kategori Laporan *</label>
-                <select required name="kategori" value={formData.kategori} onChange={handleChange} style={{ width: "100%", padding: "12px 16px", borderRadius: "12px", border: "1px solid var(--gray-300)", background: "#fff", fontSize: "14px", fontFamily: "inherit", outline: "none", appearance: "none" }}>
-                  <option value="Infrastruktur">Infrastruktur (Jalan, Jembatan, dll)</option>
-                  <option value="Pelayanan Publik">Pelayanan Publik</option>
-                  <option value="Keamanan & Ketertiban">Keamanan & Ketertiban</option>
-                  <option value="Kesehatan & Lingkungan">Kesehatan & Lingkungan</option>
-                  <option value="Lainnya">Lainnya</option>
-                </select>
+              <div style={{ display: "flex", gap: "20px", flexDirection: "row" }}>
+                <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: "8px" }}>
+                  <label style={{ fontSize: "12px", fontWeight: 600, color: "var(--gray-700)" }}>Jorong (Opsional)</label>
+                  <select name="jorong" value={formData.jorong} onChange={handleChange} style={{ width: "100%", padding: "12px 16px", borderRadius: "12px", border: "1px solid var(--gray-300)", background: "#fff", fontSize: "14px", fontFamily: "inherit", outline: "none" }}>
+                    <option value="">-- Pilih Jorong --</option>
+                    {dataJorong.map(j => <option key={j.slug} value={j.nama}>{j.nama}</option>)}
+                  </select>
+                </div>
+
+                <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: "8px" }}>
+                  <label style={{ fontSize: "12px", fontWeight: 600, color: "var(--gray-700)" }}>Kategori Laporan *</label>
+                  <select required name="kategori" value={formData.kategori} onChange={handleChange} style={{ width: "100%", padding: "12px 16px", borderRadius: "12px", border: "1px solid var(--gray-300)", background: "#fff", fontSize: "14px", fontFamily: "inherit", outline: "none", appearance: "none" }}>
+                    <option value="Infrastruktur">Infrastruktur (Jalan, Jembatan, dll)</option>
+                    <option value="Pelayanan Publik">Pelayanan Publik</option>
+                    <option value="Keamanan & Ketertiban">Keamanan & Ketertiban</option>
+                    <option value="Kesehatan & Lingkungan">Kesehatan & Lingkungan</option>
+                    <option value="Lainnya">Lainnya</option>
+                  </select>
+                </div>
               </div>
 
               <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>

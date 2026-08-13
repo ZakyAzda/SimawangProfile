@@ -38,7 +38,7 @@ export default async function AdminDashboardLayout({
               width: "36px", 
               height: "36px", 
               borderRadius: "50%", 
-              backgroundColor: "#c9943a", 
+              backgroundColor: "#111827", 
               color: "#fff", 
               display: "flex", 
               alignItems: "center", 

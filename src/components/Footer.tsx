@@ -63,7 +63,7 @@ export function Footer() {
               Nagari Simawang
             </div>
             <p style={{ fontSize: "11px", fontWeight: 500, letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--accent-l)", marginBottom: "16px" }}>
-              Batipuh Selatan · Tanah Datar
+              Nagari Simawang · Kecamatan Rambatan · Tanah Datar
             </p>
             <p style={{ fontSize: "14px", fontWeight: 300, color: "rgba(255,255,255,0.5)", lineHeight: 1.8, maxWidth: "260px" }}>
               Portal resmi pemerintahan Nagari Simawang — transparansi dan keterbukaan informasi publik.
@@ -79,8 +79,7 @@ export function Footer() {
               Kantor Wali Nagari
             </h4>
             <address style={{ fontStyle: "normal", fontSize: "14px", color: "rgba(255,255,255,0.55)", lineHeight: 2 }}>
-              Jln. Raya Simawang<br />
-              Kec. Batipuh Selatan<br />
+              Kec. Rambatan<br />
               Kab. Tanah Datar<br />
               Sumatera Barat
             </address>

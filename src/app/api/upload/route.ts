@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { writeFile } from "fs/promises";
-import path from "path";
+import { put } from "@vercel/blob";
 import { okResponse, errResponse } from "@/types";
 
 export async function POST(req: NextRequest) {
@@ -12,26 +11,25 @@ export async function POST(req: NextRequest) {
       return NextResponse.json(errResponse("Tidak ada file yang diunggah"), { status: 400 });
     }
 
-    const bytes = await file.arrayBuffer();
-    const buffer = Buffer.from(bytes);
+    // Batasan ukuran maksimal 2MB
+    const MAX_SIZE_MB = 2;
+    const MAX_SIZE_BYTES = MAX_SIZE_MB * 1024 * 1024;
+    
+    if (file.size > MAX_SIZE_BYTES) {
+      return NextResponse.json(errResponse(`Ukuran file maksimal adalah ${MAX_SIZE_MB}MB`), { status: 400 });
+    }
 
-    // Bikin nama file unik berdasarkan waktu saat ini
-    const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
-    const extension = path.extname(file.name) || ".jpg";
-    const filename = uniqueSuffix + extension;
+    // Vercel Blob tidak butuh buffer conversion, bisa langsung pakai File object, 
+    // tapi kalau mau baca dari buffer juga bisa. Pakai File lebih gampang!
+    const blob = await put(`uploads/${file.name}`, file, {
+      access: "public",
+      addRandomSuffix: true, // otomatis bikin nama file unik
+    });
 
-    // Tentukan path penyimpanan ke public/uploads
-    const uploadDir = path.join(process.cwd(), "public", "uploads");
-    const filepath = path.join(uploadDir, filename);
-
-    // Simpan file ke sistem
-    await writeFile(filepath, buffer);
-
-    // Return URL lokal yang dapat diakses publik
-    const fileUrl = `/uploads/${filename}`;
-
-    return NextResponse.json(okResponse({ url: fileUrl }), { status: 201 });
+    // Return URL yang dihosting oleh Vercel Blob
+    return NextResponse.json(okResponse({ url: blob.url }), { status: 201 });
   } catch (e: unknown) {
+    console.error("Upload error:", e);
     const msg = e instanceof Error ? e.message : "Terjadi kesalahan saat mengunggah";
     return NextResponse.json(errResponse(msg), { status: 500 });
   }

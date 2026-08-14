@@ -68,7 +68,7 @@ export function HeroSection() {
         >
           <span className="material-symbols-outlined" style={{ fontSize: "14px", color: "rgba(255,255,255,0.8)" }}>location_on</span>
           <span style={{ fontSize: "12px", fontWeight: 500, letterSpacing: "0.06em", color: "rgba(255,255,255,0.85)" }}>
-            Nagari Simawang · Batipuh Selatan · Kab. Tanah Datar · Sumatera Barat
+            Nagari Simawang · Kecamatan Rambatan· Kab. Tanah Datar · Sumatera Barat
           </span>
         </div>
 

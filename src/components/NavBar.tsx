@@ -39,7 +39,7 @@ export function NavBar() {
         {/* Brand */}
         <Link href="/" style={{ textDecoration: "none" }}>
           <div className="nav-brand-name" style={{ fontFamily: "var(--font-display), serif" }}>Nagari Simawang</div>
-          <div className="nav-brand-sub">Batipuh Selatan</div>
+          <div className="nav-brand-sub">Kecamatan Rambatan</div>
         </Link>
 
         {/* Desktop nav */}

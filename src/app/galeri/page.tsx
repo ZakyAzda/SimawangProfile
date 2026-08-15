@@ -5,6 +5,7 @@ import prisma from "@/lib/db";
 import Link from "next/link";
 import { Inter, Merriweather } from "next/font/google";
 import GalleryClientView from "@/components/GalleryClientView";
+import { ScrollAnimationWrapper } from "@/components/ScrollAnimationWrapper";
 
 export const dynamic = "force-dynamic";
 
@@ -83,74 +84,80 @@ export default async function GaleriPage(props: {
 
             {/* Stats Bar */}
             {totalFoto > 0 && (
-              <div style={{ background: "#fff", padding: "32px", borderRadius: "24px", border: "1px solid rgba(0,0,0,0.06)", boxShadow: "0 4px 40px rgba(0,0,0,0.03)", display: "flex", gap: "32px", marginBottom: "48px", flexWrap: "wrap" }}>
-                <div style={{ flex: 1, minWidth: "200px" }}>
-                  <p style={{ fontSize: "12px", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--gray-500)", marginBottom: "8px" }}>
-                    Total Foto
-                  </p>
-                  <h3 className="serif" style={{ fontSize: "36px", fontWeight: 700, color: "var(--gray-900)", marginBottom: "0" }}>
-                    {totalFoto}
-                  </h3>
+              <ScrollAnimationWrapper delay={0.1}>
+                <div style={{ background: "#fff", padding: "32px", borderRadius: "24px", border: "1px solid rgba(0,0,0,0.06)", boxShadow: "0 4px 40px rgba(0,0,0,0.03)", display: "flex", gap: "32px", marginBottom: "48px", flexWrap: "wrap" }}>
+                  <div style={{ flex: 1, minWidth: "200px" }}>
+                    <p style={{ fontSize: "12px", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--gray-500)", marginBottom: "8px" }}>
+                      Total Foto
+                    </p>
+                    <h3 className="serif" style={{ fontSize: "36px", fontWeight: 700, color: "var(--gray-900)", marginBottom: "0" }}>
+                      {totalFoto}
+                    </h3>
+                  </div>
+                  <div style={{ width: "1px", background: "var(--gray-200)", margin: "0 16px" }} />
+                  <div style={{ flex: 1, minWidth: "200px" }}>
+                    <p style={{ fontSize: "12px", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--gray-500)", marginBottom: "8px" }}>
+                      Kategori
+                    </p>
+                    <h3 className="serif" style={{ fontSize: "36px", fontWeight: 700, color: "var(--gray-900)", marginBottom: "0" }}>
+                      {categories.length}
+                    </h3>
+                  </div>
                 </div>
-                <div style={{ width: "1px", background: "var(--gray-200)", margin: "0 16px" }} />
-                <div style={{ flex: 1, minWidth: "200px" }}>
-                  <p style={{ fontSize: "12px", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--gray-500)", marginBottom: "8px" }}>
-                    Kategori
-                  </p>
-                  <h3 className="serif" style={{ fontSize: "36px", fontWeight: 700, color: "var(--gray-900)", marginBottom: "0" }}>
-                    {categories.length}
-                  </h3>
-                </div>
-              </div>
+              </ScrollAnimationWrapper>
             )}
 
             {/* Category Filter */}
             {categories.length > 0 && (
-              <div style={{ display: "flex", gap: "10px", flexWrap: "wrap", marginBottom: "32px" }}>
-                <Link 
-                  href="/galeri" 
-                  style={{
-                    padding: "10px 20px", borderRadius: "100px", fontSize: "14px", fontWeight: 600, textDecoration: "none", transition: "all 0.2s ease",
-                    background: !currentCat ? "var(--gray-900)" : "#fff",
-                    color: !currentCat ? "#fff" : "var(--gray-600)",
-                    border: `1px solid ${!currentCat ? "var(--gray-900)" : "rgba(0,0,0,0.1)"}`,
-                    boxShadow: !currentCat ? "0 4px 12px rgba(0,0,0,0.1)" : "none"
-                  }}
-                >
-                  Semua
-                </Link>
-                {categories.map(cat => (
+              <ScrollAnimationWrapper delay={0.1}>
+                <div style={{ display: "flex", gap: "10px", flexWrap: "wrap", marginBottom: "32px" }}>
                   <Link 
-                    key={cat} 
-                    href={`/galeri?category=${encodeURIComponent(cat)}`} 
+                    href="/galeri" 
                     style={{
                       padding: "10px 20px", borderRadius: "100px", fontSize: "14px", fontWeight: 600, textDecoration: "none", transition: "all 0.2s ease",
-                      background: currentCat === cat ? "var(--gray-900)" : "#fff",
-                      color: currentCat === cat ? "#fff" : "var(--gray-600)",
-                      border: `1px solid ${currentCat === cat ? "var(--gray-900)" : "rgba(0,0,0,0.1)"}`,
-                      boxShadow: currentCat === cat ? "0 4px 12px rgba(0,0,0,0.1)" : "none"
+                      background: !currentCat ? "var(--gray-900)" : "#fff",
+                      color: !currentCat ? "#fff" : "var(--gray-600)",
+                      border: `1px solid ${!currentCat ? "var(--gray-900)" : "rgba(0,0,0,0.1)"}`,
+                      boxShadow: !currentCat ? "0 4px 12px rgba(0,0,0,0.1)" : "none"
                     }}
                   >
-                    {cat}
+                    Semua
                   </Link>
-                ))}
-              </div>
+                  {categories.map(cat => (
+                    <Link 
+                      key={cat} 
+                      href={`/galeri?category=${encodeURIComponent(cat)}`} 
+                      style={{
+                        padding: "10px 20px", borderRadius: "100px", fontSize: "14px", fontWeight: 600, textDecoration: "none", transition: "all 0.2s ease",
+                        background: currentCat === cat ? "var(--gray-900)" : "#fff",
+                        color: currentCat === cat ? "#fff" : "var(--gray-600)",
+                        border: `1px solid ${currentCat === cat ? "var(--gray-900)" : "rgba(0,0,0,0.1)"}`,
+                        boxShadow: currentCat === cat ? "0 4px 12px rgba(0,0,0,0.1)" : "none"
+                      }}
+                    >
+                      {cat}
+                    </Link>
+                  ))}
+                </div>
+              </ScrollAnimationWrapper>
             )}
 
             {/* Grid / Empty state */}
-            {filteredItems.length === 0 ? (
-              <div style={{ textAlign: "center", padding: "80px 24px", background: "#fff", borderRadius: "24px", border: "1px dashed var(--gray-300)" }}>
-                <div className="material-symbols-outlined" style={{ fontSize: "52px", color: "var(--gray-300)", marginBottom: "16px" }}>photo_library</div>
-                <p className="serif" style={{ fontSize: "22px", fontWeight: 700, color: "var(--gray-800)", marginBottom: "8px" }}>
-                  Belum Ada Foto
-                </p>
-                <p style={{ fontSize: "14px", color: "var(--gray-500)" }}>
-                  {currentCat ? `Belum ada foto dokumentasi untuk kategori "${currentCat}".` : "Foto dokumentasi kegiatan nagari akan ditampilkan di sini."}
-                </p>
-              </div>
-            ) : (
-              <GalleryClientView filteredItems={filteredItems} />
-            )}
+            <ScrollAnimationWrapper delay={0.1}>
+              {filteredItems.length === 0 ? (
+                <div style={{ textAlign: "center", padding: "80px 24px", background: "#fff", borderRadius: "24px", border: "1px dashed var(--gray-300)" }}>
+                  <div className="material-symbols-outlined" style={{ fontSize: "52px", color: "var(--gray-300)", marginBottom: "16px" }}>photo_library</div>
+                  <p className="serif" style={{ fontSize: "22px", fontWeight: 700, color: "var(--gray-800)", marginBottom: "8px" }}>
+                    Belum Ada Foto
+                  </p>
+                  <p style={{ fontSize: "14px", color: "var(--gray-500)" }}>
+                    {currentCat ? `Belum ada foto dokumentasi untuk kategori "${currentCat}".` : "Foto dokumentasi kegiatan nagari akan ditampilkan di sini."}
+                  </p>
+                </div>
+              ) : (
+                <GalleryClientView filteredItems={filteredItems} />
+              )}
+            </ScrollAnimationWrapper>
 
           </div>
         </main>

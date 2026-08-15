@@ -6,6 +6,7 @@ import { SejarahSection }  from "@/components/profil/SejarahSection";
 import { SukuSection }     from "@/components/profil/SukuSection";
 import { WaliNagariSection } from "@/components/profil/WaliNagariSection";
 import { PemimpinSection } from "@/components/profil/PemimpinSection";
+import { ScrollAnimationWrapper } from "@/components/ScrollAnimationWrapper";
 
 export const metadata = {
   title: "Profil Nagari — Nagari Simawang",
@@ -98,10 +99,18 @@ export default function ProfilPage() {
         <NavBar />
         <main style={{ width: "100%", display: "flex", flexDirection: "column" }}>
           <ProfilHero />
-          <SejarahSection />
-          <SukuSection />
-          <WaliNagariSection />
-          <PemimpinSection />
+          <ScrollAnimationWrapper>
+            <SejarahSection />
+          </ScrollAnimationWrapper>
+          <ScrollAnimationWrapper delay={0.1}>
+            <SukuSection />
+          </ScrollAnimationWrapper>
+          <ScrollAnimationWrapper delay={0.1}>
+            <WaliNagariSection />
+          </ScrollAnimationWrapper>
+          <ScrollAnimationWrapper delay={0.1}>
+            <PemimpinSection />
+          </ScrollAnimationWrapper>
         </main>
         <Footer />
       </div>

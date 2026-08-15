@@ -7,6 +7,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { CalendarRange, Clock, ArrowRight, Search } from "lucide-react";
 import { unstable_noStore as noStore } from "next/cache";
+import { ScrollAnimationWrapper } from "@/components/ScrollAnimationWrapper";
 
 export const dynamic = "force-dynamic";
 
@@ -137,7 +138,8 @@ export default async function BeritaPage({
         <main className="ng-wrap" style={{ paddingTop: "120px", paddingBottom: "80px" }}>
 
           {/* Header & Search Section */}
-          <div className="w-full border-b border-[var(--line)] pb-16 mb-16" style={{ paddingBottom: "48px", marginBottom: "56px" }}>
+          <ScrollAnimationWrapper>
+            <div className="w-full border-b border-[var(--line)] pb-16 mb-16" style={{ paddingBottom: "48px", marginBottom: "56px" }}>
             {/* Page Header */}
             <div className="w-full flex flex-col items-center justify-center text-center mb-10 px-4">
               <h1 className="serif text-4xl lg:text-5xl font-bold text-[var(--gray-900)] mb-4">Berita & Publikasi Nagari</h1>
@@ -160,11 +162,12 @@ export default async function BeritaPage({
                 </button>
               </form>
             </div>
-          </div>
+          </ScrollAnimationWrapper>
 
           {/* 1. Hero Section (Sorotan & Populer) */}
           {!q && (
-            <section className="grid grid-cols-1 lg:grid-cols-12 gap-8" style={{ marginBottom: "100px" }}>
+            <ScrollAnimationWrapper delay={0.1}>
+              <section className="grid grid-cols-1 lg:grid-cols-12 gap-8" style={{ marginBottom: "100px" }}>
 
               {/* Kiri: Featured Story */}
               {featuredPost && (
@@ -232,11 +235,13 @@ export default async function BeritaPage({
                 ))}
               </div>
             </section>
+            </ScrollAnimationWrapper>
           )}
 
           {/* 2. Top Stories Grid */}
           {!q && topStoriesGrid.length > 0 && (
-            <section style={{ marginBottom: "100px" }}>
+            <ScrollAnimationWrapper delay={0.1}>
+              <section style={{ marginBottom: "100px" }}>
               <h2 className="serif text-3xl font-bold mb-8 border-b border-[var(--line)] pb-4 text-[var(--gray-900)]">
                 Pilihan Redaksi
               </h2>
@@ -265,10 +270,12 @@ export default async function BeritaPage({
                 ))}
               </div>
             </section>
+            </ScrollAnimationWrapper>
           )}
 
           {/* 3. Main Content Split (Latest & Widget) */}
-          <section className="grid grid-cols-1 lg:grid-cols-12 gap-10" style={{ marginBottom: "100px" }}>
+          <ScrollAnimationWrapper delay={0.1}>
+            <section className="grid grid-cols-1 lg:grid-cols-12 gap-10" style={{ marginBottom: "100px" }}>
 
             {/* Kiri: Latest Stories */}
             <div className="lg:col-span-8">
@@ -398,6 +405,7 @@ export default async function BeritaPage({
               </div>
             </div>
           </section>
+          </ScrollAnimationWrapper>
         </main>
 
         <Footer />

@@ -162,6 +162,7 @@ export default async function BeritaPage({
                 </button>
               </form>
             </div>
+          </div>
           </ScrollAnimationWrapper>
 
           {/* 1. Hero Section (Sorotan & Populer) */}

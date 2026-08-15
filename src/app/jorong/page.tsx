@@ -3,6 +3,7 @@ import { Footer } from "@/components/Footer";
 import { JorongCard } from "@/components/jorong/JorongCard";
 import { dataJorong } from "@/data/jorong";
 import { inter, merriweather } from "@/lib/ng-theme";
+import { ScrollAnimationWrapper } from "@/components/ScrollAnimationWrapper";
 
 export const metadata = {
   title: "Jorong — Nagari Simawang",
@@ -19,7 +20,8 @@ export default function JorongIndexPage() {
         <main style={{ width: "100%", display: "flex", flexDirection: "column" }}>
 
           {/* ── Hero ── */}
-          <section
+          <ScrollAnimationWrapper>
+            <section
             style={{
               position: "relative",
               width: "100%",
@@ -113,9 +115,11 @@ export default function JorongIndexPage() {
               background: "linear-gradient(to bottom, transparent, rgba(0,0,0,0.02))",
             }} />
           </section>
+          </ScrollAnimationWrapper>
 
           {/* ── Grid ── */}
-          <section style={{ padding: "72px 0 100px", background: "#ffffff" }}>
+          <ScrollAnimationWrapper delay={0.1}>
+            <section style={{ padding: "72px 0 100px", background: "#ffffff" }}>
             <div className="ng-wrap">
               {/* Section label */}
               <div style={{ marginBottom: "40px" }}>
@@ -143,6 +147,7 @@ export default function JorongIndexPage() {
               </div>
             </div>
           </section>
+          </ScrollAnimationWrapper>
 
         </main>
         <Footer />

@@ -7,6 +7,7 @@ import Link from "next/link";
 import { Inter, Merriweather } from "next/font/google";
 import { ReadingProgress } from "./ReadingProgress";
 import { unstable_noStore as noStore } from "next/cache";
+import { ScrollAnimationWrapper } from "@/components/ScrollAnimationWrapper";
 
 export const dynamic = "force-dynamic";
 
@@ -661,200 +662,206 @@ export default async function BeritaDetailPage({
         <NavBar />
 
         {/* ── Hero ── */}
-        <div className="bd-hero" id="top">
-          <img
-            src={post.image || DEFAULT_IMAGE}
-            alt={post.title}
-            className="bd-hero-img"
-          />
-          <div className="bd-hero-overlay" />
-          <div className="bd-hero-content ng-wrap">
-            <nav className="bd-breadcrumb" aria-label="Breadcrumb">
-              <Link href="/">Home</Link>
-              <span className="bd-breadcrumb-sep">/</span>
-              <Link href="/berita">Berita</Link>
-              <span className="bd-breadcrumb-sep">/</span>
-              <span style={{ color: "rgba(255,255,255,0.9)" }}>{post.category}</span>
-            </nav>
+        <ScrollAnimationWrapper>
+          <div className="bd-hero" id="top">
+            <img
+              src={post.image || DEFAULT_IMAGE}
+              alt={post.title}
+              className="bd-hero-img"
+            />
+            <div className="bd-hero-overlay" />
+            <div className="bd-hero-content ng-wrap">
+              <nav className="bd-breadcrumb" aria-label="Breadcrumb">
+                <Link href="/">Home</Link>
+                <span className="bd-breadcrumb-sep">/</span>
+                <Link href="/berita">Berita</Link>
+                <span className="bd-breadcrumb-sep">/</span>
+                <span style={{ color: "rgba(255,255,255,0.9)" }}>{post.category}</span>
+              </nav>
 
-            <div className="bd-category">
-              <span className="material-symbols-outlined">label</span>
-              {post.category}
-            </div>
+              <div className="bd-category">
+                <span className="material-symbols-outlined">label</span>
+                {post.category}
+              </div>
 
-            <h1 className="bd-hero-title">{post.title}</h1>
+              <h1 className="bd-hero-title">{post.title}</h1>
 
-            <div className="bd-meta">
-              <span className="bd-meta-item">
-                <span className="material-symbols-outlined">person</span>
-                {post.authorName}
-              </span>
-              <span className="bd-meta-item">
-                <span className="material-symbols-outlined">calendar_today</span>
-                {formatDate(post.publishedAt)}
-              </span>
-              <span className="bd-meta-item">
-                <span className="material-symbols-outlined">schedule</span>
-                {readTime} menit baca
-              </span>
-              <span className="bd-meta-item">
-                <span className="material-symbols-outlined">visibility</span>
-                {post.views.toLocaleString("id-ID")} tayangan
-              </span>
+              <div className="bd-meta">
+                <span className="bd-meta-item">
+                  <span className="material-symbols-outlined">person</span>
+                  {post.authorName}
+                </span>
+                <span className="bd-meta-item">
+                  <span className="material-symbols-outlined">calendar_today</span>
+                  {formatDate(post.publishedAt)}
+                </span>
+                <span className="bd-meta-item">
+                  <span className="material-symbols-outlined">schedule</span>
+                  {readTime} menit baca
+                </span>
+                <span className="bd-meta-item">
+                  <span className="material-symbols-outlined">visibility</span>
+                  {post.views.toLocaleString("id-ID")} tayangan
+                </span>
+              </div>
             </div>
           </div>
-        </div>
+        </ScrollAnimationWrapper>
 
         {/* ── Layout ── */}
         <div className="ng-wrap">
-          <div className="bd-layout" id="article-body">
+          <ScrollAnimationWrapper delay={0.1}>
+            <div className="bd-layout" id="article-body">
 
-            {/* Artikel */}
-            <article className="bd-article">
-              {isHTML ? (
-                <div
-                  className="bd-content"
-                  dangerouslySetInnerHTML={{ __html: post.content }}
-                />
-              ) : (
-                <p className="bd-plain">{plainText}</p>
-              )}
+              {/* Artikel */}
+              <article className="bd-article">
+                {isHTML ? (
+                  <div
+                    className="bd-content"
+                    dangerouslySetInnerHTML={{ __html: post.content }}
+                  />
+                ) : (
+                  <p className="bd-plain">{plainText}</p>
+                )}
 
-              {/* Share bar */}
-              <div className="bd-action-bar">
-                <span className="bd-share-label">Bagikan</span>
-                <a
-                  className="bd-share-btn"
-                  href={"https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent("https://simawang.desa.id/berita/" + post.slug)}
-                  target="_blank" rel="noopener noreferrer"
-                  aria-label="Facebook" title="Facebook"
-                >
-                  <span className="material-symbols-outlined">public</span>
-                </a>
-                <a
-                  className="bd-share-btn"
-                  href={"https://twitter.com/intent/tweet?url=" + encodeURIComponent("https://simawang.desa.id/berita/" + post.slug) + "&text=" + encodeURIComponent(post.title)}
-                  target="_blank" rel="noopener noreferrer"
-                  aria-label="Twitter/X" title="Twitter / X"
-                >
-                  <span className="material-symbols-outlined">alternate_email</span>
-                </a>
-                <a
-                  className="bd-share-btn"
-                  href={"https://api.whatsapp.com/send?text=" + encodeURIComponent(post.title + " — https://simawang.desa.id/berita/" + post.slug)}
-                  target="_blank" rel="noopener noreferrer"
-                  aria-label="WhatsApp" title="WhatsApp"
-                >
-                  <span className="material-symbols-outlined">chat</span>
-                </a>
-                <div className="bd-views">
-                  <span className="material-symbols-outlined">visibility</span>
-                  {post.views.toLocaleString("id-ID")} tayangan
+                {/* Share bar */}
+                <div className="bd-action-bar">
+                  <span className="bd-share-label">Bagikan</span>
+                  <a
+                    className="bd-share-btn"
+                    href={"https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent("https://simawang.desa.id/berita/" + post.slug)}
+                    target="_blank" rel="noopener noreferrer"
+                    aria-label="Facebook" title="Facebook"
+                  >
+                    <span className="material-symbols-outlined">public</span>
+                  </a>
+                  <a
+                    className="bd-share-btn"
+                    href={"https://twitter.com/intent/tweet?url=" + encodeURIComponent("https://simawang.desa.id/berita/" + post.slug) + "&text=" + encodeURIComponent(post.title)}
+                    target="_blank" rel="noopener noreferrer"
+                    aria-label="Twitter/X" title="Twitter / X"
+                  >
+                    <span className="material-symbols-outlined">alternate_email</span>
+                  </a>
+                  <a
+                    className="bd-share-btn"
+                    href={"https://api.whatsapp.com/send?text=" + encodeURIComponent(post.title + " — https://simawang.desa.id/berita/" + post.slug)}
+                    target="_blank" rel="noopener noreferrer"
+                    aria-label="WhatsApp" title="WhatsApp"
+                  >
+                    <span className="material-symbols-outlined">chat</span>
+                  </a>
+                  <div className="bd-views">
+                    <span className="material-symbols-outlined">visibility</span>
+                    {post.views.toLocaleString("id-ID")} tayangan
+                  </div>
                 </div>
-              </div>
 
-              {/* Author box */}
-              <div className="bd-author-box">
-                <div className="bd-author-avatar">
-                  {post.authorName.charAt(0).toUpperCase()}
+                {/* Author box */}
+                <div className="bd-author-box">
+                  <div className="bd-author-avatar">
+                    {post.authorName.charAt(0).toUpperCase()}
+                  </div>
+                  <div>
+                    <div className="bd-author-name">{post.authorName}</div>
+                    <div className="bd-author-sub">Penulis · Nagari Simawang</div>
+                  </div>
+                  <Link href="/berita" className="bd-author-link">
+                    <span className="material-symbols-outlined">arrow_back</span>
+                    Semua Berita
+                  </Link>
                 </div>
-                <div>
-                  <div className="bd-author-name">{post.authorName}</div>
-                  <div className="bd-author-sub">Penulis · Nagari Simawang</div>
-                </div>
-                <Link href="/berita" className="bd-author-link">
-                  <span className="material-symbols-outlined">arrow_back</span>
-                  Semua Berita
+              </article>
+
+              {/* Sidebar */}
+              <aside className="bd-sidebar">
+                <Link href="/berita" className="bd-back-link">
+                  <span className="material-symbols-outlined">chevron_left</span>
+                  Kembali ke Berita
                 </Link>
-              </div>
-            </article>
 
-            {/* Sidebar */}
-            <aside className="bd-sidebar">
-              <Link href="/berita" className="bd-back-link">
-                <span className="material-symbols-outlined">chevron_left</span>
-                Kembali ke Berita
-              </Link>
-
-              {/* Reading time */}
-              <div className="bd-read-card">
-                <span className="material-symbols-outlined" style={{ fontSize: "26px", color: "#c9943a" }}>
-                  menu_book
-                </span>
-                <div>
-                  <div className="bd-read-card-time">{readTime} menit</div>
-                  <div className="bd-read-card-sub">estimasi waktu baca</div>
+                {/* Reading time */}
+                <div className="bd-read-card">
+                  <span className="material-symbols-outlined" style={{ fontSize: "26px", color: "#c9943a" }}>
+                    menu_book
+                  </span>
+                  <div>
+                    <div className="bd-read-card-time">{readTime} menit</div>
+                    <div className="bd-read-card-sub">estimasi waktu baca</div>
+                  </div>
                 </div>
-              </div>
 
-              {/* Related posts */}
-              {suggestions.length > 0 && (
-                <>
-                  <div className="bd-sidebar-label">Berita Lainnya</div>
-                  {suggestions.slice(0, 4).map((s) => (
-                    <Link key={s.id} href={"/berita/" + s.slug} className="bd-sidebar-post">
-                      <img src={s.image || DEFAULT_IMAGE} alt={s.title} className="bd-sidebar-thumb" />
-                      <div style={{ flex: 1, minWidth: 0 }}>
-                        <div className="bd-sidebar-post-title">{s.title}</div>
-                        <div className="bd-sidebar-meta">{formatDate(s.publishedAt)}</div>
-                      </div>
-                    </Link>
-                  ))}
-                </>
-              )}
+                {/* Related posts */}
+                {suggestions.length > 0 && (
+                  <>
+                    <div className="bd-sidebar-label">Berita Lainnya</div>
+                    {suggestions.slice(0, 4).map((s) => (
+                      <Link key={s.id} href={"/berita/" + s.slug} className="bd-sidebar-post">
+                        <img src={s.image || DEFAULT_IMAGE} alt={s.title} className="bd-sidebar-thumb" />
+                        <div style={{ flex: 1, minWidth: 0 }}>
+                          <div className="bd-sidebar-post-title">{s.title}</div>
+                          <div className="bd-sidebar-meta">{formatDate(s.publishedAt)}</div>
+                        </div>
+                      </Link>
+                    ))}
+                  </>
+                )}
 
-              {/* Category tag */}
-              <div style={{ marginTop: "24px" }}>
-                <div className="bd-sidebar-label">Kategori</div>
-                <Link href={"/berita?q=" + encodeURIComponent(post.category)} className="bd-tag">
-                  <span className="material-symbols-outlined">folder_open</span>
-                  {post.category}
-                </Link>
-              </div>
-            </aside>
-          </div>
+                {/* Category tag */}
+                <div style={{ marginTop: "24px" }}>
+                  <div className="bd-sidebar-label">Kategori</div>
+                  <Link href={"/berita?q=" + encodeURIComponent(post.category)} className="bd-tag">
+                    <span className="material-symbols-outlined">folder_open</span>
+                    {post.category}
+                  </Link>
+                </div>
+              </aside>
+            </div>
+          </ScrollAnimationWrapper>
         </div>
 
         {/* ── Berita Lainnya bottom grid ── */}
         {suggestions.length > 0 && (
           <div className="ng-wrap">
-            <div className="bd-related-section">
-              <div className="bd-related-header">
-                <h2 className="bd-related-title">Berita Lainnya</h2>
-                <span className="bd-related-sub">Mungkin kamu tertarik juga</span>
-              </div>
+            <ScrollAnimationWrapper delay={0.1}>
+              <div className="bd-related-section">
+                <div className="bd-related-header">
+                  <h2 className="bd-related-title">Berita Lainnya</h2>
+                  <span className="bd-related-sub">Mungkin kamu tertarik juga</span>
+                </div>
 
-              <div className="bd-related-grid">
-                {suggestions.map((s) => (
-                  <Link key={s.id} href={"/berita/" + s.slug} className="bd-related-card">
-                    <div className="bd-related-img-wrap">
-                      <img src={s.image || DEFAULT_IMAGE} alt={s.title} className="bd-related-img" />
-                      <span className="bd-related-badge">{s.category}</span>
-                    </div>
-                    <div className="bd-related-body">
-                      <div className="bd-related-date">{formatDate(s.publishedAt)}</div>
-                      <div className="bd-related-card-title">{s.title}</div>
-                      <div className="bd-related-card-meta">
-                        <span className="material-symbols-outlined">person</span>
-                        {s.authorName}
-                        <div className="bd-related-read">
-                          Baca
-                          <span className="material-symbols-outlined">arrow_forward</span>
+                <div className="bd-related-grid">
+                  {suggestions.map((s) => (
+                    <Link key={s.id} href={"/berita/" + s.slug} className="bd-related-card">
+                      <div className="bd-related-img-wrap">
+                        <img src={s.image || DEFAULT_IMAGE} alt={s.title} className="bd-related-img" />
+                        <span className="bd-related-badge">{s.category}</span>
+                      </div>
+                      <div className="bd-related-body">
+                        <div className="bd-related-date">{formatDate(s.publishedAt)}</div>
+                        <div className="bd-related-card-title">{s.title}</div>
+                        <div className="bd-related-card-meta">
+                          <span className="material-symbols-outlined">person</span>
+                          {s.authorName}
+                          <div className="bd-related-read">
+                            Baca
+                            <span className="material-symbols-outlined">arrow_forward</span>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </Link>
-                ))}
-              </div>
+                    </Link>
+                  ))}
+                </div>
 
-              <div className="bd-divider">selesai membaca</div>
-              <div style={{ display: "flex", justifyContent: "center", paddingBottom: "80px" }}>
-                <a href="#top" className="bd-back-top">
-                  <span className="material-symbols-outlined">arrow_upward</span>
-                  Kembali ke atas
-                </a>
+                <div className="bd-divider">selesai membaca</div>
+                <div style={{ display: "flex", justifyContent: "center", paddingBottom: "80px" }}>
+                  <a href="#top" className="bd-back-top">
+                    <span className="material-symbols-outlined">arrow_upward</span>
+                    Kembali ke atas
+                  </a>
+                </div>
               </div>
-            </div>
+            </ScrollAnimationWrapper>
           </div>
         )}
 

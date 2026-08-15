@@ -9,6 +9,7 @@ import { JorongNavSection } from "@/components/jorong/JorongNavSection";
 import { getJorongBySlug, getAllJorongSlugs } from "@/data/jorong";
 import { inter, merriweather } from "@/lib/ng-theme";
 import prisma from "@/lib/db";
+import { ScrollAnimationWrapper } from "@/components/ScrollAnimationWrapper";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -54,10 +55,20 @@ export default async function JorongDetailPage({ params }: Props) {
         <NavBar />
         <main style={{ width: "100%", display: "flex", flexDirection: "column" }}>
           <JorongHero jorong={jorong} />
-          <ProfilJorongSection jorong={jorong} />
-          <KepalaJorongSection jorong={jorong} />
-          {umkmData.length > 0 && <PotensiSection umkm={umkmData} />}
-          <JorongNavSection currentSlug={jorong.slug} />
+          <ScrollAnimationWrapper>
+            <ProfilJorongSection jorong={jorong} />
+          </ScrollAnimationWrapper>
+          <ScrollAnimationWrapper delay={0.1}>
+            <KepalaJorongSection jorong={jorong} />
+          </ScrollAnimationWrapper>
+          {umkmData.length > 0 && (
+            <ScrollAnimationWrapper delay={0.1}>
+              <PotensiSection umkm={umkmData} />
+            </ScrollAnimationWrapper>
+          )}
+          <ScrollAnimationWrapper delay={0.1}>
+            <JorongNavSection currentSlug={jorong.slug} />
+          </ScrollAnimationWrapper>
         </main>
         <Footer />
       </div>
